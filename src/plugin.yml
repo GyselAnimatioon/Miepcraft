@@ -1,0 +1,20 @@
+main: ch.gyselanimatioon.miepcraft.Main
+name: Miepcraft
+author: GyselAnimatioon
+version: 1.0
+
+commands:
+  fixxp:
+    usage: /fixxp
+    description: Setzt die XP Kosten des Items in deiner Hand zurueck
+  fixitem:
+    usage: /fixitem
+    description: Repariert das Item deiner Hand
+  ticket:
+    usage:  /ticket [add|list]
+    description: Tickets hinzufuegen und abfragen
+    
+permissions:
+  miepcraft.ticket.list:
+    description: Ticket liste anzeigen permissions
+    default: op
