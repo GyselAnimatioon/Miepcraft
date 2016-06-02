@@ -14,22 +14,24 @@ public class FileManager {
 	private File file;
 
 	public FileManager() {
-		this.file = new File(Main.plugin.getDataFolder(), "tickets.txt");
-		if (!this.file.exists()) {
-			this.file.getParentFile().mkdirs();
+
+	}
+
+	public void createFile(String name) {
+		file = new File(Main.plugin.getDataFolder(), name + ".txt");
+
+		if (!file.exists()) {
+			file.getParentFile().mkdirs();
 			try {
-				this.file.createNewFile();
+				file.createNewFile();
 			} catch (IOException localIOException) {
 			}
 		}
 	}
-	
-	public void createFile(String name) {
-		
-	}
 
-	public List<String> read() {
-		if (!this.file.exists()) {
+	public List<String> read(String name) {
+		file = new File(Main.plugin.getDataFolder(), name + ".txt");
+		if (!file.exists()) {
 			this.file.getParentFile().mkdirs();
 			try {
 				this.file.createNewFile();
@@ -55,8 +57,9 @@ public class FileManager {
 		return list;
 	}
 
-	public void write(List<String> list) {
-		if (!this.file.exists()) {
+	public void write(String name, List<String> list) {
+		file = new File(Main.plugin.getDataFolder(), name + ".txt");
+		if (!file.exists()) {
 			this.file.getParentFile().mkdirs();
 			try {
 				this.file.createNewFile();

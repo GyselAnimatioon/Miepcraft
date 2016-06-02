@@ -27,6 +27,9 @@ public class Main extends JavaPlugin implements Listener {
 		plugin = this;
 		fileManager = new FileManager();
 
+		fileManager.createFile("chatLog");
+		fileManager.createFile("tickets");
+
 		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), this);
 
