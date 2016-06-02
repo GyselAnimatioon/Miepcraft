@@ -9,6 +9,7 @@ import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
+import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
 import net.milkbowl.vault.economy.Economy;
 
@@ -28,10 +29,13 @@ public class Main extends JavaPlugin implements Listener {
 		fileManager = new FileManager();
 
 		fileManager.createFile("chatLog");
+		fileManager.createFile("commandLog");
+		fileManager.createFile("serverLog");
 		fileManager.createFile("tickets");
 
 		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new CommandListener(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
