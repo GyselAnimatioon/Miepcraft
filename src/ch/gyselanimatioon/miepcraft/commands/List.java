@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class List implements CommandExecutor {
 
-	public Inventory inv;
+	
 	
 	public List() {
 
@@ -26,6 +26,7 @@ public class List implements CommandExecutor {
 		}
 
 		if (player != null) {
+			Inventory inv;
 			inv = Bukkit.createInventory(null, 36, "Online Spieler");
 		    int i = 0;
 			for (Player players : Bukkit.getOnlinePlayers()) {

@@ -11,11 +11,14 @@ commands:
     usage: /fixitem
     description: Repariert das Item deiner Hand
   ticket:
-    usage:  /ticket [add|list]
+    usage:  /ticket [add|list] <opt args>
     description: Tickets hinzufuegen und abfragen
   list:
     usage:  /list
     description: Listet Online Spieler auf
+  tp:
+    usage:  /tp [User]
+    description: Teleportiert dich zu einem Spieler.
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -23,4 +26,7 @@ permissions:
     default: op
   miepcraft.listener.command.spy:
     description: command spy permissions
+    default: op
+  miepcraft.commands.tp:
+    description: tp permissions
     default: op

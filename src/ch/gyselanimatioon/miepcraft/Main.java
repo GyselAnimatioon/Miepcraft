@@ -9,6 +9,7 @@ import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
+import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
@@ -33,6 +34,7 @@ public class Main extends JavaPlugin implements Listener {
 		fileManager.createFile("chatLog");
 		fileManager.createFile("commandLog");
 		fileManager.createFile("serverLog");
+		fileManager.createFile("teleportLog");
 		fileManager.createFile("tickets");
 
 		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
@@ -44,6 +46,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("fixitem").setExecutor(new Fixitem());
 		getCommand("ticket").setExecutor(new Ticket());
 		getCommand("list").setExecutor(new List());
+		getCommand("tp").setExecutor(new Tp());
 
 	}
 
