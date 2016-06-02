@@ -43,7 +43,7 @@ public class Ticket implements CommandExecutor {
 						player.sendMessage("§8[§eTicket§8] §6/ticket add <Ticket>");
 					}
 				} else if (args[0].equalsIgnoreCase("list")) {
-					if (!sender.hasPermission("miepcraft.ticket.list")) {
+					if (!sender.hasPermission("miepcraft.commands.ticket.list")) {
 						sender.sendMessage("§8[§eTicket§8] §6Du hast keine Rechte auf diesen Befehl.");
 					} else {
 						List<String> list = Main.fileManager.read("tickets");

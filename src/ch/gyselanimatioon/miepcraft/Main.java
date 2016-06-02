@@ -7,10 +7,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
+import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
+import ch.gyselanimatioon.miepcraft.listener.InventoryClickListener;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin implements Listener {
@@ -36,10 +38,12 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new CommandListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
 		getCommand("ticket").setExecutor(new Ticket());
+		getCommand("list").setExecutor(new List());
 
 	}
 

@@ -13,8 +13,14 @@ commands:
   ticket:
     usage:  /ticket [add|list]
     description: Tickets hinzufuegen und abfragen
+  list:
+    usage:  /list
+    description: Listet Online Spieler auf
     
 permissions:
-  miepcraft.ticket.list:
+  miepcraft.commands.ticket.list:
     description: Ticket liste anzeigen permissions
+    default: op
+  miepcraft.listener.command.spy:
+    description: command spy permissions
     default: op
