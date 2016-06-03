@@ -22,9 +22,6 @@ commands:
   backpack:
     usage: /backpack
     description: Lege hier Items ab die du im Backpack lagern willst
-  trade:
-    usage: /trade
-    description: Trade
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -36,3 +33,7 @@ permissions:
   miepcraft.commands.tp:
     description: tp permissions
     default: op
+  miepcraft.commands.backpack:
+    description: backpack permissions
+    default: op
+  
