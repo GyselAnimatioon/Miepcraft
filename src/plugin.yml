@@ -19,6 +19,9 @@ commands:
   tp:
     usage:  /tp [User]
     description: Teleportiert dich zu einem Spieler.
+  backpack:
+    usage: /backpack
+    description: Lege hier Items ab die du im Backpack lagern willst
     
 permissions:
   miepcraft.commands.ticket.list:

@@ -22,12 +22,12 @@ public class ChatListener implements Listener {
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 		
-		List<String> list = Main.fileManager.read("chatLog");
+		List<String> list = Main.fileManager.read("log","chatLog");
 		list.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
-		Main.fileManager.write("chatLog", list);
+		Main.fileManager.write("log","chatLog", list);
 		
-		List<String> list2 = Main.fileManager.read("serverLog");
+		List<String> list2 = Main.fileManager.read("log","serverLog");
 		list2.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
-		Main.fileManager.write("serverLog", list2);
+		Main.fileManager.write("log","serverLog", list2);
     }
 }

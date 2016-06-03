@@ -31,13 +31,13 @@ public class Ticket implements CommandExecutor {
 					if (args.length > 1) {
 						Date now = new Date();
 						SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-						List<String> list = Main.fileManager.read("tickets");
+						List<String> list = Main.fileManager.read(".","tickets");
 						String newLine = player.getName() + " (" + format.format(now) + "): ";
 						for (int i = 1; i < args.length; i++) {
 							newLine = newLine + args[i] + " ";
 						}
 						list.add(newLine);
-						Main.fileManager.write("tickets", list);
+						Main.fileManager.write(".","tickets", list);
 						player.sendMessage("§8[§eTicket§8] §6gespeichert.");
 					} else {
 						player.sendMessage("§8[§eTicket§8] §6/ticket add <Ticket>");
@@ -46,7 +46,7 @@ public class Ticket implements CommandExecutor {
 					if (!sender.hasPermission("miepcraft.commands.ticket.list")) {
 						sender.sendMessage("§8[§eTicket§8] §6Du hast keine Rechte auf diesen Befehl.");
 					} else {
-						List<String> list = Main.fileManager.read("tickets");
+						List<String> list = Main.fileManager.read(".","tickets");
 						for (int i = 0; i < list.size(); i++) {
 							sender.sendMessage("§8[§eTicket§8] §6" + list.get(i));
 						}
@@ -67,19 +67,19 @@ public class Ticket implements CommandExecutor {
 					if (args.length > 1) {
 						Date now = new Date();
 						SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-						List<String> list = Main.fileManager.read("tickets");
+						List<String> list = Main.fileManager.read(".","tickets");
 						String newLine = "Console (" + format.format(now) + "): ";
 						for (int i = 1; i < args.length; i++) {
 							newLine = newLine + args[i] + " ";
 						}
 						list.add(newLine);
-						Main.fileManager.write("tickets", list);
+						Main.fileManager.write(".","tickets", list);
 						Bukkit.getConsoleSender().sendMessage("§8[§eTicket§8] §6gespeichert.");
 					} else {
 						Bukkit.getConsoleSender().sendMessage("§8[§eTicket§8] §6/ticket add <Ticket>");
 					}
 				} else if (args[0].equalsIgnoreCase("list")) {
-					List<String> list = Main.fileManager.read("tickets");
+					List<String> list = Main.fileManager.read(".","tickets");
 					for (int i = 0; i < list.size(); i++) {
 						Bukkit.getConsoleSender().sendMessage("§8[§eTicket§8] §6" + list.get(i));
 					}

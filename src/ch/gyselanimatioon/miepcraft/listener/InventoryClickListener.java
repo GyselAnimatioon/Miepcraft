@@ -52,11 +52,16 @@ public class InventoryClickListener implements Listener {
 			Date now = new Date();
 			SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-			List<String> list = Main.fileManager.read("teleportLog");
-			list.add("[" + format.format(now) + "] " + e.getWhoClicked() + ": /tp " + Bukkit.getPlayer(((SkullMeta) e.getClickedInventory().getItem(4).getItemMeta()).getOwner()).getName() + ". Auswahl: " + e.getCurrentItem().getType().toString());
-			Main.fileManager.write("teleportLog", list);
+			List<String> list = Main.fileManager.read("log", "teleportLog");
+			list.add(
+					"[" + format.format(now) + "] " + e.getWhoClicked() + ": /tp "
+							+ Bukkit.getPlayer(
+									((SkullMeta) e.getClickedInventory().getItem(4).getItemMeta()).getOwner()).getName()
+							+ ". Auswahl: " + e.getCurrentItem().getType().toString());
+			Main.fileManager.write("log", "teleportLog", list);
 
 		}
+		
 
 	}
 }

@@ -39,12 +39,12 @@ public class CommandListener implements Listener {
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-		List<String> list = Main.fileManager.read("commandLog");
+		List<String> list = Main.fileManager.read("log","commandLog");
 		list.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
-		Main.fileManager.write("commandLog", list);
+		Main.fileManager.write("log","commandLog", list);
 
-		List<String> list2 = Main.fileManager.read("serverLog");
+		List<String> list2 = Main.fileManager.read("log","serverLog");
 		list2.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
-		Main.fileManager.write("serverLog", list2);
+		Main.fileManager.write("log","serverLog", list2);
 	}
 }

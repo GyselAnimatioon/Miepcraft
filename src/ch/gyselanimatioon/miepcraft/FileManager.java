@@ -14,11 +14,10 @@ public class FileManager {
 	private File file;
 
 	public FileManager() {
-
 	}
 
-	public void createFile(String name) {
-		file = new File(Main.plugin.getDataFolder(), name + ".txt");
+	public void createFile(String folder, String filename) {
+		file = new File(Main.plugin.getDataFolder() + "/" + folder, filename + ".txt");
 
 		if (!file.exists()) {
 			file.getParentFile().mkdirs();
@@ -29,8 +28,8 @@ public class FileManager {
 		}
 	}
 
-	public List<String> read(String name) {
-		file = new File(Main.plugin.getDataFolder(), name + ".txt");
+	public List<String> read(String folder, String filename) {
+		file = new File(Main.plugin.getDataFolder() + "/" + folder, filename + ".txt");
 		if (!file.exists()) {
 			this.file.getParentFile().mkdirs();
 			try {
@@ -57,8 +56,8 @@ public class FileManager {
 		return list;
 	}
 
-	public void write(String name, List<String> list) {
-		file = new File(Main.plugin.getDataFolder(), name + ".txt");
+	public void write(String folder, String filename, List<String> list) {
+		file = new File(Main.plugin.getDataFolder() + "/" + folder, filename + ".txt");
 		if (!file.exists()) {
 			this.file.getParentFile().mkdirs();
 			try {
