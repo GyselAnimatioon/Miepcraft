@@ -5,9 +5,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ch.gyselanimatioon.miepcraft.commands.Backpack;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
-import ch.gyselanimatioon.miepcraft.commands.Backpack;
 import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
@@ -52,7 +52,6 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("list").setExecutor(new List());
 		getCommand("tp").setExecutor(new Tp());
 		getCommand("backpack").setExecutor(new Backpack());
-
 	}
 
 	private boolean setupEconomy() {
@@ -68,3 +67,4 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 }
+

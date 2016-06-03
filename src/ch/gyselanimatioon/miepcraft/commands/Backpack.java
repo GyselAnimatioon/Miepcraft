@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -29,25 +30,25 @@ public class Backpack implements CommandExecutor {
 		if (player != null) {
 
 			Main.fileManager.createFile("inventorys/user", player.getName().toLowerCase());
-			
 			Inventory inv = Bukkit.createInventory(null, 54, "Backpack");
-
 			List<String> items = Main.fileManager.read("inventorys/user", player.getName().toLowerCase());
-
-			int i = 0;
 			for (String item : items) {
-				String[] itemDataArray = item.split(",");
+				String[] itemDataArray = item.split(" . ");
 
 				Material material = Material.matchMaterial(itemDataArray[0]);
 				int amount = Integer.parseInt(itemDataArray[1]);
+				int slot = Integer.parseInt(itemDataArray[2]);
+				String[] enchantments = itemDataArray[3].split(",");
 
 				ItemStack thisItem = new ItemStack(material);
 				thisItem.setAmount(amount);
-
-				inv.setItem(i, thisItem);
-				i++;
+				for (String enchantment : enchantments) {
+					String[] oneEnchantment = enchantment.split("=");
+					thisItem.addEnchantment(Enchantment.getByName(oneEnchantment[0]),
+							Integer.parseInt(oneEnchantment[1]));
+				}
+				inv.setItem(slot, thisItem);
 			}
-
 			player.getPlayer().openInventory(inv);
 		} else {
 			sender.sendMessage("Nicht möglich in der Konsole.");
