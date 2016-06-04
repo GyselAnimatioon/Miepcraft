@@ -6,6 +6,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.gyselanimatioon.miepcraft.commands.Backpack;
+import ch.gyselanimatioon.miepcraft.commands.EcoAll;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.List;
@@ -60,6 +61,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("backpack").setExecutor(new Backpack());
 		getCommand("ping").setExecutor(new Ping());
 		getCommand("teamchat").setExecutor(new Teamchat());
+		getCommand("ecoall").setExecutor(new EcoAll());
 	}
 
 	private boolean setupEconomy() {

@@ -39,6 +39,14 @@ public class Ticket implements CommandExecutor {
 						list.add(newLine);
 						Main.fileManager.write(".","tickets", list);
 						player.sendMessage("§8[§eTicket§8] §6gespeichert.");
+						
+						for (Player players : Bukkit.getOnlinePlayers()) {
+							if(players.hasPermission("miepcraft.commands.ticket.notify")) {
+								players.sendMessage("§8[§eTicket§8] §6" + player.getName() + " hat ein Ticket eingereicht:");
+								players.sendMessage("§8[§eTicket§8] §6" + newLine);
+							}
+						}
+						
 					} else {
 						player.sendMessage("§8[§eTicket§8] §6/ticket add <Ticket>");
 					}

@@ -28,6 +28,9 @@ commands:
   teamchat:
     usage: /teamchat <Nachricht>
     description: Schreibe eine Nachricht an alle Teammitglieder
+  ecoall:
+    usage: /ecoall <Anzahl>
+    description: Gebe allen Spielern geld.
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -63,3 +66,10 @@ permissions:
   miepcraft.commands.teamchat:
     description: permission auf ein 4 mal 9 backpack
     default: op
+  miepcraft.commands.ecoall:
+    description: permission um allen geld zu geben.
+    default: op
+  miepcraft.commands.ticket.notify:
+    description: permission um benachricht zu werden wenn jemand ein ticket erstellt
+    default: op
+    
