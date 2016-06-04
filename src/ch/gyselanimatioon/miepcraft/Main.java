@@ -16,6 +16,7 @@ import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
 import ch.gyselanimatioon.miepcraft.listener.InventoryClickListener;
 import ch.gyselanimatioon.miepcraft.listener.InventoryCloseListener;
+import ch.gyselanimatioon.miepcraft.listener.JoinListener;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin implements Listener {
@@ -45,6 +46,7 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new CommandListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
