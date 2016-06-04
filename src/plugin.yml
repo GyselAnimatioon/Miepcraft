@@ -25,6 +25,9 @@ commands:
   ping:
     usage: /ping <Player|all>
     description: Schaue dir deinen Ping an
+  teamchat:
+    usage: /teamchat <Nachricht>
+    description: Schreibe eine Nachricht an alle Teammitglieder
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -33,15 +36,30 @@ permissions:
   miepcraft.listener.command.spy:
     description: command spy permissions
     default: op
+  miepcraft.listener.quit.spy:
+    description: quit spy permissions
+    default: op
   miepcraft.commands.tp:
     description: tp permissions
-    default: op
-  miepcraft.commands.backpack:
-    description: backpack permissions
     default: op
   miepcraft.commands.ping.all:
     description: all ping permissions
     default: op
   miepcraft.commands.ping.other:
     description: other ping permissions
+    default: op
+  miepcraft.listener.join.spy:
+    description: permissions um silent joins zu sehen
+    default: op
+  miepcraft.listener.join.silent:
+    description: permission um unaufaellig den server zu betreten
+    default: op
+  miepcraft.commands.backpack.big:
+    description: permission auf ein 6 mal 9 backpack
+    default: op
+  miepcraft.commands.backpack.middle:
+    description: permission auf ein 4 mal 9 backpack
+    default: op
+  miepcraft.commands.teamchat:
+    description: permission auf ein 4 mal 9 backpack
     default: op

@@ -1,0 +1,39 @@
+package ch.gyselanimatioon.miepcraft.commands;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.libs.jline.internal.Log;
+import org.bukkit.entity.Player;
+
+public class Teamchat implements CommandExecutor {
+
+	public Teamchat() {
+
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		Player player = null;
+		if (sender instanceof Player) {
+			player = (Player) sender;
+		}
+
+		if (player != null) {
+			for (Player players : Bukkit.getOnlinePlayers()) {
+				if (players.hasPermission("miepcraft.commands.teamchat")) {
+					String message = "";
+					for (int i = 0; i < args.length; i++) {
+						message = message + args[i] + " ";
+					}
+					players.sendMessage("§8[§6Teamchat§8] §7" + sender.getName() + " §f" + message);
+					Log.info("§8[§eTeamchat§8] §7" + sender.getName() + " §f" + message);
+				}
+			}
+		}
+
+		return true;
+	}
+
+}

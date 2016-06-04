@@ -28,31 +28,41 @@ public class Backpack implements CommandExecutor {
 		}
 
 		if (player != null) {
-			if (player.hasPermission("miepcraft.commands.backpack")) {
-				Main.fileManager.createFile("inventorys/user", player.getName().toLowerCase());
-				Inventory inv = Bukkit.createInventory(null, 54, "Backpack");
-				List<String> items = Main.fileManager.read("inventorys/user", player.getName().toLowerCase());
-				for (String item : items) {
-					String[] itemDataArray = item.split(" . ");
+			Inventory inv;
+			Main.fileManager.createFile("inventorys/user", player.getName().toLowerCase());
+			if (player.hasPermission("miepcraft.commands.backpack.big")) {
+				inv = Bukkit.createInventory(null, 90, "10x9 Backpack");
+			} else if (player.hasPermission("miepcraft.commands.backpack.middle")) {
+				inv = Bukkit.createInventory(null, 36, "4x9 Backpack");
+			} else {
+				inv = Bukkit.createInventory(null, 18, "2x9 Backpack");
+			}
+			List<String> items = Main.fileManager.read("inventorys/user", player.getName().toLowerCase());
+			for (String item : items) {
+				String[] itemDataArray = item.split(" . ");
 
-					Material material = Material.matchMaterial(itemDataArray[0]);
-					int amount = Integer.parseInt(itemDataArray[1]);
-					int slot = Integer.parseInt(itemDataArray[2]);
-					String[] enchantments = itemDataArray[3].split(",");
+				Material material = Material.matchMaterial(itemDataArray[0]);
+				int amount = Integer.parseInt(itemDataArray[1]);
+				int slot = Integer.parseInt(itemDataArray[2]);
+				String ench = itemDataArray[3];
+				String[] enchantments = null;
+				if (ench.length() > 5) {
+					enchantments = itemDataArray[3].split(",");
+				}
 
-					ItemStack thisItem = new ItemStack(material);
-					thisItem.setAmount(amount);
+				ItemStack thisItem = new ItemStack(material);
+				thisItem.setAmount(amount);
+
+				if (ench.length() > 5) {
 					for (String enchantment : enchantments) {
 						String[] oneEnchantment = enchantment.split("=");
 						thisItem.addEnchantment(Enchantment.getByName(oneEnchantment[0]),
 								Integer.parseInt(oneEnchantment[1]));
 					}
-					inv.setItem(slot, thisItem);
 				}
-				player.getPlayer().openInventory(inv);
-			} else {
-				sender.sendMessage("§8[§eBackpack§8] §eDu brauchst VIP um dies zu benutzen.");
+				inv.setItem(slot, thisItem);
 			}
+			player.getPlayer().openInventory(inv);
 		} else {
 			sender.sendMessage("Nicht möglich in der Konsole.");
 		}
