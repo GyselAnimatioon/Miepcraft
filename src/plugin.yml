@@ -22,6 +22,9 @@ commands:
   backpack:
     usage: /backpack
     description: Lege hier Items ab die du im Backpack lagern willst
+  ping:
+    usage: /ping <Player|all>
+    description: Schaue dir deinen Ping an
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -36,4 +39,9 @@ permissions:
   miepcraft.commands.backpack:
     description: backpack permissions
     default: op
-  
+  miepcraft.commands.ping.all:
+    description: all ping permissions
+    default: op
+  miepcraft.commands.ping.other:
+    description: other ping permissions
+    default: op

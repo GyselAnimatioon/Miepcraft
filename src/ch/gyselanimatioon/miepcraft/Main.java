@@ -9,6 +9,7 @@ import ch.gyselanimatioon.miepcraft.commands.Backpack;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.List;
+import ch.gyselanimatioon.miepcraft.commands.Ping;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
@@ -17,6 +18,7 @@ import ch.gyselanimatioon.miepcraft.listener.DeathListener;
 import ch.gyselanimatioon.miepcraft.listener.InventoryClickListener;
 import ch.gyselanimatioon.miepcraft.listener.InventoryCloseListener;
 import ch.gyselanimatioon.miepcraft.listener.JoinListener;
+import ch.gyselanimatioon.miepcraft.listener.QuitListener;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin implements Listener {
@@ -47,6 +49,7 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
@@ -54,6 +57,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("list").setExecutor(new List());
 		getCommand("tp").setExecutor(new Tp());
 		getCommand("backpack").setExecutor(new Backpack());
+		getCommand("ping").setExecutor(new Ping());
 	}
 
 	private boolean setupEconomy() {

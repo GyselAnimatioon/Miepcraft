@@ -1,13 +1,9 @@
 package ch.gyselanimatioon.miepcraft.listener;
 
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
 public class JoinListener implements Listener {
 
@@ -15,10 +11,10 @@ public class JoinListener implements Listener {
 	}
 
 	@EventHandler
-	public void PlayerJoinEvent(PlayerJoinEvent e) {
-		CraftPlayer p = (CraftPlayer) e.getPlayer();
-		IChatBaseComponent cbc = ChatSerializer.a("{\"text\": \"" + "test" + "\"}");
-		PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, (byte) 2);
-		((CraftPlayer) p).getHandle().playerConnection.sendPacket(ppoc);
+	public void PlayerJoinEvent(PlayerJoinEvent ev) {
+		
+		Bukkit.broadcastMessage("§8[§eBeigetreten§8]§6 " + ev.getPlayer().getName());
+		
 	}
+
 }

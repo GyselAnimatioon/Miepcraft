@@ -25,16 +25,6 @@ public class CommandListener implements Listener {
 				players.sendMessage("§8[§eCommandSpy§8] §7" + event.getPlayer().getName() + " §f" + event.getMessage());
 			}
 		}
-		
-		/**
-		 * 
-		 * Commands überschreiben
-		 * 
-		 */
-		/*
-		if(event.getMessage().equalsIgnoreCase("/list")) {
-			event.setMessage("/me nope");
-		}*/
 
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
