@@ -38,7 +38,6 @@ public class InventoryCloseListener implements Listener {
 						entchantment = entchantment.substring(0, entchantment.length() - 1);
 					}
 					String entry = material + " . " + amount + " . " + slot + " . " + entchantment;
-					Log.info(entry);
 					list.add(entry);
 				}
 			}
