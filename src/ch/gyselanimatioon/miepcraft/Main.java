@@ -44,6 +44,8 @@ public class Main extends JavaPlugin implements Listener {
 		fileManager.createFile("log","teleportLog");
 		fileManager.createFile(".","tickets");
 		fileManager.createFile("inventorys","free");
+		fileManager.createFile(".","tutorialPos");
+		fileManager.createFile(".","miepcraftGame");
 
 		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), this);

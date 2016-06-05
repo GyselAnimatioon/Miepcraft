@@ -42,7 +42,6 @@ public class Ticket implements CommandExecutor {
 						
 						for (Player players : Bukkit.getOnlinePlayers()) {
 							if(players.hasPermission("miepcraft.commands.ticket.notify")) {
-								players.sendMessage("§8[§eTicket§8] §6" + player.getName() + " hat ein Ticket eingereicht:");
 								players.sendMessage("§8[§eTicket§8] §6" + newLine);
 							}
 						}

@@ -20,6 +20,9 @@ public class Teamchat implements CommandExecutor {
 			player = (Player) sender;
 		}
 		String message = "";
+		for (int i = 0; i < args.length; i++) {
+			message = message + args[i] + " ";
+		}
 		if (player != null) {
 			for (Player players : Bukkit.getOnlinePlayers()) {
 				if (players.hasPermission("miepcraft.commands.teamchat")) {
@@ -33,9 +36,6 @@ public class Teamchat implements CommandExecutor {
 		} else {
 			for (Player players : Bukkit.getOnlinePlayers()) {
 				if (players.hasPermission("miepcraft.commands.teamchat")) {
-					for (int i = 0; i < args.length; i++) {
-						message = message + args[i] + " ";
-					}
 					players.sendMessage("§8[§6Teamchat§8] §2" + sender.getName() + " §a" + message);
 				}
 			}
