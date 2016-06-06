@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +39,7 @@ public class CommandListener implements Listener {
 		Main.fileManager.write("log","serverLog", list2);
 		
 		int rand = (int) (Math.random() * 100);
-		Log.info(rand);
+		//Log.info(rand);
 		if(rand < 3) {
 			List<String> list4 = new ArrayList<>();
 			list4.add("craft");

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
@@ -48,7 +47,7 @@ public class ChatListener implements Listener {
 		}
 
 		int rand = (int) (Math.random() * 100);
-		Log.info(rand);
+		//Log.info(rand);
 		if (rand < 3) {
 			List<String> list4 = new ArrayList<>();
 			list4.add("craft");
