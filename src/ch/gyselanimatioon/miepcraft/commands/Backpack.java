@@ -44,7 +44,8 @@ public class Backpack implements CommandExecutor {
 				Material material = Material.matchMaterial(itemDataArray[0]);
 				int amount = Integer.parseInt(itemDataArray[1]);
 				int slot = Integer.parseInt(itemDataArray[2]);
-				String ench = itemDataArray[3];
+				short dur = Short.parseShort(itemDataArray[3]);
+				String ench = itemDataArray[4];
 				String[] enchantments = null;
 				if (ench.length() > 5) {
 					enchantments = itemDataArray[3].split(",");
@@ -52,7 +53,7 @@ public class Backpack implements CommandExecutor {
 
 				ItemStack thisItem = new ItemStack(material);
 				thisItem.setAmount(amount);
-
+				thisItem.setDurability(dur);
 				if (ench.length() > 5) {
 					for (String enchantment : enchantments) {
 						String[] oneEnchantment = enchantment.split("=");
@@ -60,6 +61,7 @@ public class Backpack implements CommandExecutor {
 								Integer.parseInt(oneEnchantment[1]));
 					}
 				}
+				
 				inv.setItem(slot, thisItem);
 			}
 			player.getPlayer().openInventory(inv);

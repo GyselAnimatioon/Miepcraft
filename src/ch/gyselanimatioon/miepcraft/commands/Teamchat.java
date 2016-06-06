@@ -26,9 +26,6 @@ public class Teamchat implements CommandExecutor {
 		if (player != null) {
 			for (Player players : Bukkit.getOnlinePlayers()) {
 				if (players.hasPermission("miepcraft.commands.teamchat")) {
-					for (int i = 0; i < args.length; i++) {
-						message = message + args[i] + " ";
-					}
 					players.sendMessage("§8[§6Teamchat§8] §2" + sender.getName() + " §a" + message);
 				}
 			}

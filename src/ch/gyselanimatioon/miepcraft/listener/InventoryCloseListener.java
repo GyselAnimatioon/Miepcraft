@@ -26,6 +26,7 @@ public class InventoryCloseListener implements Listener {
 					String material = e.getInventory().getItem(slot).getType().toString();
 					int amount = e.getInventory().getItem(slot).getAmount();
 					String entchantment = e.getInventory().getItem(slot).getEnchantments().toString();
+					short dur = e.getInventory().getItem(slot).getDurability();
 
 					Map<Enchantment, Integer> allEnchantments = e.getInventory().getItem(slot).getEnchantments();
 
@@ -37,7 +38,7 @@ public class InventoryCloseListener implements Listener {
 						}
 						entchantment = entchantment.substring(0, entchantment.length() - 1);
 					}
-					String entry = material + " . " + amount + " . " + slot + " . " + entchantment;
+					String entry = material + " . " + amount + " . " + slot + " . " + dur + " . " + entchantment;
 					list.add(entry);
 				}
 			}
