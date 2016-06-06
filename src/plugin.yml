@@ -31,6 +31,9 @@ commands:
   ecoall:
     usage: /ecoall <Anzahl>
     description: Gebe allen Spielern geld.
+  reloadwarning:
+    usage: /reloadwarning
+    description: Warne alle Spieler auf einen Reload vor.
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -71,5 +74,8 @@ permissions:
     default: op
   miepcraft.commands.ticket.notify:
     description: permission um benachricht zu werden wenn jemand ein ticket erstellt
+    default: op
+  miepcraft.commands.reloadwarning:
+    description: permission um alle auf einen reload zu warnen.
     default: op
     

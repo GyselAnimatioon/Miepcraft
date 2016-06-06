@@ -11,6 +11,7 @@ import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ping;
+import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
@@ -28,6 +29,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static Economy econ = null;
 	public static FileManager fileManager = null;
 	public static Main plugin = null;
+	public static Title title = null;
 
 	@Override
 	public void onEnable() {
@@ -37,6 +39,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		plugin = this;
 		fileManager = new FileManager();
+		title = new Title();
 
 		fileManager.createFile("log","chatLog");
 		fileManager.createFile("log","commandLog");
@@ -64,6 +67,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("ping").setExecutor(new Ping());
 		getCommand("teamchat").setExecutor(new Teamchat());
 		getCommand("ecoall").setExecutor(new EcoAll());
+		getCommand("reloadwarning").setExecutor(new ReloadWarning());
 	}
 
 	private boolean setupEconomy() {
