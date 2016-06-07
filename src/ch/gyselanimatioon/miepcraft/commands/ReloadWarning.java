@@ -1,6 +1,5 @@
 package ch.gyselanimatioon.miepcraft.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,11 +24,11 @@ public class ReloadWarning implements CommandExecutor {
 			if (player.hasPermission("miepcraft.commands.reloadwarning")) {
 				Main.title.setTitle("Server Reload");
 				Main.title.setSubtitle("Bitte bewege dich nicht!");
+				Main.title.setTitleColor(ChatColor.DARK_RED);
+				Main.title.setSubtitleColor(ChatColor.RED);
 				Main.title.setFadeInTime(1);
 				Main.title.setFadeOutTime(1);
 				Main.title.setStayTime(5);
-				Main.title.setTitleColor(ChatColor.DARK_RED);
-				Main.title.setSubtitleColor(ChatColor.RED);
 				Main.title.broadcast();
 				player.sendMessage("§8[§eReloadWarning§8] §6Reload Warning gesendet.");
 			} else {
