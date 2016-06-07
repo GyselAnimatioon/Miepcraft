@@ -34,6 +34,9 @@ commands:
   reloadwarning:
     usage: /reloadwarning
     description: Warne alle Spieler auf einen Reload vor.
+  commandspy:
+    usage: /commandspy
+    description: Schlatet CommandSpy ein oder aus.
     
 permissions:
   miepcraft.commands.ticket.list:

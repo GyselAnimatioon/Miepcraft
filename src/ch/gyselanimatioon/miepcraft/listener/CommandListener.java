@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import ch.gyselanimatioon.miepcraft.Main;
+import ch.gyselanimatioon.miepcraft.Yaml;
 
 public class CommandListener implements Listener {
 
@@ -24,8 +25,11 @@ public class CommandListener implements Listener {
 		for (Player players : Bukkit.getOnlinePlayers()) {
 			if (players.hasPermission("miepcraft.listener.command.spy")) {
 				// CommandSpy wird nich der Person angezeigt die den Command benutzt hat.
-				if(!players.getName().toLowerCase().equalsIgnoreCase(event.getPlayer().getName().toLowerCase())) {
-					players.sendMessage("§8[§eCommandSpy§8] §7" + event.getPlayer().getName() + " §f" + event.getMessage());
+				if (!players.getName().toLowerCase().equalsIgnoreCase(event.getPlayer().getName().toLowerCase())) {
+					Yaml yaml = Main.getPlayerYaml(players);
+					if (yaml.getBoolean("CommandSpy Enabled")) {
+						players.sendMessage("§8[§eCommandSpy§8] §7" + event.getPlayer().getName() + " §f" + event.getMessage());
+					}
 				}
 			}
 		}
@@ -33,22 +37,22 @@ public class CommandListener implements Listener {
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-		List<String> list = Main.fileManager.read("log","commandLog");
+		List<String> list = Main.fileManager.read("log", "commandLog");
 		list.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
-		Main.fileManager.write("log","commandLog", list);
+		Main.fileManager.write("log", "commandLog", list);
 
-		List<String> list2 = Main.fileManager.read("log","serverLog");
+		List<String> list2 = Main.fileManager.read("log", "serverLog");
 		list2.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
-		Main.fileManager.write("log","serverLog", list2);
-		
+		Main.fileManager.write("log", "serverLog", list2);
+
 		int rand = (int) (Math.random() * 100);
-		//Log.info(rand);
-		if(rand < 3) {
+		// Log.info(rand);
+		if (rand < 3) {
 			List<String> list4 = new ArrayList<>();
 			list4.add("craft");
 			Bukkit.broadcastMessage("§8[§eMiep§8]");
-			Main.fileManager.write(".","miepcraftGame", list4);
+			Main.fileManager.write(".", "miepcraftGame", list4);
 		}
-		
+
 	}
 }

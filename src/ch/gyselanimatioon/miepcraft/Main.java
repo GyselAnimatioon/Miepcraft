@@ -1,11 +1,15 @@
 package ch.gyselanimatioon.miepcraft;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.gyselanimatioon.miepcraft.commands.Backpack;
+import ch.gyselanimatioon.miepcraft.commands.CommandSpy;
 import ch.gyselanimatioon.miepcraft.commands.EcoAll;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
@@ -15,6 +19,7 @@ import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
+import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
 import ch.gyselanimatioon.miepcraft.features.MiepcraftPlayerdata;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
@@ -60,6 +65,7 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), this);
 
 		Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new CreatePlayerProfile(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
@@ -71,6 +77,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("teamchat").setExecutor(new Teamchat());
 		getCommand("ecoall").setExecutor(new EcoAll());
 		getCommand("reloadwarning").setExecutor(new ReloadWarning());
+		getCommand("commandspy").setExecutor(new CommandSpy());
 	}
 
 	private boolean setupEconomy() {
@@ -83,6 +90,17 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		econ = rsp.getProvider();
 		return econ != null;
+	}
+	
+	public static Yaml getPlayerYaml(Player player) {	
+		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "data" + File.separator + "players" + File.separator + player.getName() + ".yml");
+
+	}
+
+	public static Yaml getOfflinePlayerYaml(String string) {
+
+		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "data" + File.separator + "players" + File.separator + string + ".yml");
+
 	}
 
 }
