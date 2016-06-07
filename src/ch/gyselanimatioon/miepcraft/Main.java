@@ -15,6 +15,7 @@ import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
+import ch.gyselanimatioon.miepcraft.features.MiepcraftPlayerdata;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
@@ -57,6 +58,8 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), this);
+
+		Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
