@@ -28,6 +28,9 @@ public class CreatePlayerProfile implements Listener {
 		if(!yaml.contains("CommandSpy Enabled")) {
 			yaml.add("CommandSpy Enabled", false);
 		}
+		if(!yaml.contains("nick")) {
+			yaml.add("nick", ev.getPlayer().getName());
+		}
 		yaml.save();
 
 	}

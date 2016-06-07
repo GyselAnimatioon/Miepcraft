@@ -40,6 +40,12 @@ commands:
   clearchat:
     usage: /clearchat
     description: Sende 200 Leere Zeilen in den Chat um den Chat zu loeschen.
+  checkmode:
+    usage: /checkmode
+    description: check all modes von allen spielern
+  nick:
+    usage: /nick
+    description: gibt dir einen random nickname
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -86,5 +92,11 @@ permissions:
     default: op
   miepcraft.commands.clearchat:
     description: permission um den chat zu clearen.
+    default: op
+  miepcraft.commands.checkmode:
+    description: permissions um die modis von allen spielern anzusehen
+    default: op
+  miepcraft.commands.nick:
+    description: permissions um dir einen random nicknamen zu geben
     default: op
     

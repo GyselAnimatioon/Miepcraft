@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 
 import ch.gyselanimatioon.miepcraft.Main;
+import ch.gyselanimatioon.miepcraft.Yaml;
 
 @SuppressWarnings("deprecation")
 public class ChatListener implements Listener {
@@ -21,6 +22,13 @@ public class ChatListener implements Listener {
 
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event) {
+
+		Yaml yaml = Main.getPlayerYaml(event.getPlayer());
+		if (!((String) yaml.get("nick")).toLowerCase().equalsIgnoreCase((String) yaml.getString("Playername"))) {
+			event.setCancelled(true);
+			Bukkit.broadcastMessage("§8[§7Spieler§8] §7" + yaml.get("nick") + " §f" + event.getMessage());
+		}
+
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
@@ -47,7 +55,7 @@ public class ChatListener implements Listener {
 		}
 
 		int rand = (int) (Math.random() * 100);
-		//Log.info(rand);
+		// Log.info(rand);
 		if (rand < 3) {
 			List<String> list4 = new ArrayList<>();
 			list4.add("craft");
