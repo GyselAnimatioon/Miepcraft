@@ -37,6 +37,9 @@ commands:
   commandspy:
     usage: /commandspy
     description: Schlatet CommandSpy ein oder aus.
+  clearchat:
+    usage: /clearchat
+    description: Sende 200 Leere Zeilen in den Chat um den Chat zu loeschen.
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -80,5 +83,8 @@ permissions:
     default: op
   miepcraft.commands.reloadwarning:
     description: permission um alle auf einen reload zu warnen.
+    default: op
+  miepcraft.commands.clearchat:
+    description: permission um den chat zu clearen.
     default: op
     

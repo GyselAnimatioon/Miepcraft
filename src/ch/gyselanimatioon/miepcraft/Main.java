@@ -9,6 +9,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.gyselanimatioon.miepcraft.commands.Backpack;
+import ch.gyselanimatioon.miepcraft.commands.ClearChat;
 import ch.gyselanimatioon.miepcraft.commands.CommandSpy;
 import ch.gyselanimatioon.miepcraft.commands.EcoAll;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
@@ -78,6 +79,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("ecoall").setExecutor(new EcoAll());
 		getCommand("reloadwarning").setExecutor(new ReloadWarning());
 		getCommand("commandspy").setExecutor(new CommandSpy());
+		getCommand("clearchat").setExecutor(new ClearChat());
 	}
 
 	private boolean setupEconomy() {
