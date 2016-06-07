@@ -15,7 +15,10 @@ public class QuitListener implements Listener {
 	public void PlayerQuitEvent(PlayerQuitEvent ev) {
 		for (Player players : Bukkit.getOnlinePlayers()) {
 			if (players.hasPermission("miepcraft.listener.quit.spy")) {
-				players.sendMessage("§8[§eQuitSpy§8]§6 " + ev.getPlayer().getName());
+				// QuitSpy wird nich der Person angezeigt die geleftet ist.
+				if(!players.getName().toLowerCase().equalsIgnoreCase(ev.getPlayer().getName().toLowerCase())) {
+					players.sendMessage("§8[§eQuitSpy§8]§6 " + ev.getPlayer().getName());
+				}
 			}
 		}
 	}

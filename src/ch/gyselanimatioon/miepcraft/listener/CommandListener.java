@@ -23,7 +23,10 @@ public class CommandListener implements Listener {
 	public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event) {
 		for (Player players : Bukkit.getOnlinePlayers()) {
 			if (players.hasPermission("miepcraft.listener.command.spy")) {
-				players.sendMessage("§8[§eCommandSpy§8] §7" + event.getPlayer().getName() + " §f" + event.getMessage());
+				// CommandSpy wird nich der Person angezeigt die den Command benutzt hat.
+				if(!players.getName().toLowerCase().equalsIgnoreCase(event.getPlayer().getName().toLowerCase())) {
+					players.sendMessage("§8[§eCommandSpy§8] §7" + event.getPlayer().getName() + " §f" + event.getMessage());
+				}
 			}
 		}
 

@@ -16,7 +16,10 @@ public class JoinListener implements Listener {
 		if(ev.getPlayer().hasPermission("miepcraft.listener.join.silent")) {
 			for (Player players : Bukkit.getOnlinePlayers()) {
 				if (players.hasPermission("miepcraft.listener.join.spy")) {
-					players.sendMessage("§8[§eJoinSpy§8]§6 " + ev.getPlayer().getName());
+					// JoinSpy wird nich der Person angezeigt die gejoint ist.
+					if(!players.getName().toLowerCase().equalsIgnoreCase(ev.getPlayer().getName().toLowerCase())) {
+						players.sendMessage("§8[§eJoinSpy§8]§6 " + ev.getPlayer().getName());
+					}
 				}
 			}
 		} else {
