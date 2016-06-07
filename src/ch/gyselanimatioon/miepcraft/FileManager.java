@@ -16,16 +16,18 @@ public class FileManager {
 	public FileManager() {
 	}
 
-	public void createFile(String folder, String filename) {
+	public boolean createFile(String folder, String filename) {
 		file = new File(Main.plugin.getDataFolder() + "/" + folder, filename + ".txt");
 
 		if (!file.exists()) {
 			file.getParentFile().mkdirs();
 			try {
 				file.createNewFile();
+				return true;
 			} catch (IOException localIOException) {
 			}
 		}
+		return false;
 	}
 
 	public List<String> read(String folder, String filename) {
