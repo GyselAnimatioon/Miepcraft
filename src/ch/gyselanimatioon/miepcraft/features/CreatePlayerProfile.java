@@ -31,6 +31,9 @@ public class CreatePlayerProfile implements Listener {
 		if(!yaml.contains("nick")) {
 			yaml.add("nick", ev.getPlayer().getName());
 		}
+		if(!yaml.contains("traveledBlocks")) {
+			yaml.add("traveledBlocks", 0);
+		}
 		yaml.save();
 
 	}

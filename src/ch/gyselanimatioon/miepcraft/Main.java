@@ -24,6 +24,7 @@ import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
 import ch.gyselanimatioon.miepcraft.features.MiepcraftPlayerdata;
+import ch.gyselanimatioon.miepcraft.features.TracePlayers;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
@@ -69,6 +70,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new CreatePlayerProfile(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new TracePlayers(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
@@ -99,13 +101,24 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	public static Yaml getPlayerYaml(Player player) {	
-		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "data" + File.separator + "players" + File.separator + player.getName() + ".yml");
+		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "players" + File.separator + player.getName() + ".yml");
 
 	}
 
 	public static Yaml getOfflinePlayerYaml(String string) {
 
-		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "data" + File.separator + "players" + File.separator + string + ".yml");
+		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "players" + File.separator + string + ".yml");
+
+	}
+	
+	public static Yaml getPlayerTraceYaml(Player player) {	
+		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "trace" + File.separator + player.getName() + ".yml");
+
+	}
+
+	public static Yaml getOfflinePlayerTraceYaml(String string) {
+
+		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "trace" + File.separator + string + ".yml");
 
 	}
 
