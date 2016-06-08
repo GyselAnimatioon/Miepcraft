@@ -34,6 +34,12 @@ public class CreatePlayerProfile implements Listener {
 		if(!yaml.contains("traveledBlocks")) {
 			yaml.add("traveledBlocks", 0);
 		}
+		if(!yaml.contains("showtrace")) {
+			yaml.add("showtrace", false);
+		}
+		if(!yaml.contains("lastshowtrace")) {
+			yaml.add("lastshowtrace", 0);
+		}
 		yaml.save();
 
 	}

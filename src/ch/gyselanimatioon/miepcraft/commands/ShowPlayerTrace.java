@@ -19,6 +19,7 @@ public class ShowPlayerTrace implements CommandExecutor {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = null;
@@ -26,30 +27,62 @@ public class ShowPlayerTrace implements CommandExecutor {
 			player = (Player) sender;
 		}
 		if (player != null) {
-			if(player.hasPermission("miepcraft.commands.showplayertrace")) {
-				
-				Yaml yaml = Main.getPlayerYaml(player);
-				Yaml trace = Main.getPlayerTraceYaml(player);
-				
-				for(int i = 0;i < Integer.parseInt(yaml.get("traveledBlocks").toString());i++) {
+			if (player.hasPermission("miepcraft.commands.showplayertrace")) {
 
-					World welt = Bukkit.getWorld("world");
-					//World welt = Bukkit.getWorld(trace.getString("Bewegung" + i + ".Welt"));
-					int x = trace.getInteger("Bewegung" + i + ".X");
-					int y = trace.getInteger("Bewegung" + i + ".Y") - 1;
-					int z = trace.getInteger("Bewegung" + i + ".Z");
-					
-					Block block = welt.getBlockAt(x, y, z);
-					block.setType(Material.REDSTONE_BLOCK);
+				Player target = player;
+				
+				if(args.length > 0) {
+					target = (Player) Bukkit.getOfflinePlayer(args[0]);
 				}
 				
+				Yaml yaml = Main.getOfflinePlayerYaml(target.getName());
+				Yaml trace = Main.getOfflinePlayerTraceYaml(target.getName());
+				yaml.set("showtrace", !yaml.getBoolean("showtrace"));
+				yaml.save();
+				
+				int j = yaml.getInteger("traveledBlocks");
+				int i = j - 50;
+				if(args.length > 1) {
+					i = j - Integer.parseInt(args[1]);
+				}
+				if (yaml.getBoolean("showtrace")) {
+					for (; i < j; i++) {
+						World welt = Bukkit.getWorld("world");
+						int x = trace.getInteger("Bewegung" + i + ".X");
+						int y = trace.getInteger("Bewegung" + i + ".Y") - 1;
+						int z = trace.getInteger("Bewegung" + i + ".Z");
+
+						Block block = welt.getBlockAt(x, y, z);
+						trace.set("Bewegung" + i + ".Block", block.getTypeId());
+						yaml.set("lastshowtrace", j);
+						yaml.save();
+						trace.save();
+						block.setType(Material.REDSTONE_BLOCK);
+					}
+				} else {
+					j = yaml.getInteger("lastshowtrace");
+					if(args.length > 1) {
+						i = j - Integer.parseInt(args[1]);
+					} else {
+						i = j - 50;
+					}
+					for (; i < j; i++) {
+
+						World welt = Bukkit.getWorld("world");
+						int x = trace.getInteger("Bewegung" + i + ".X");
+						int y = trace.getInteger("Bewegung" + i + ".Y") - 1;
+						int z = trace.getInteger("Bewegung" + i + ".Z");
+
+						Block block = welt.getBlockAt(x, y, z);
+						block.setTypeId(trace.getInteger("Bewegung" + i + ".Block"));
+					}
+				}
+
 			} else {
 				player.sendMessage("§8[§eTrace§8]§6 Du hast keine Rechte auf diesen Befehl.");
 			}
 		} else {
-			for(Player onePlayer : Bukkit.getOnlinePlayers()) {
-				Log.info("§8[§eCheckmode§8] §6" + onePlayer.getName() + ": " + onePlayer.getGameMode().toString() + " + " + onePlayer.getAllowFlight());
-			}
+			Log.info("[ShowPlayerTrace.java] Not supportet.");
 		}
 		return true;
 	}

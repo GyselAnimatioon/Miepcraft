@@ -28,6 +28,7 @@ public class TracePlayers implements Listener {
 			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".X", e.getPlayer().getLocation().getBlockX());
 			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Y", e.getPlayer().getLocation().getBlockY());
 			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Z", e.getPlayer().getLocation().getBlockZ());
+			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Block", "");
 			trace.save();
 			yaml.increment("traveledBlocks");
 			yaml.save();
