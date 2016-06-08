@@ -28,6 +28,9 @@ public class Nick implements CommandExecutor {
 			if (player.hasPermission("miepcraft.command.nick")) {
 				if (args.length > 0) {
 					if (args[0].equalsIgnoreCase("remove")) {
+						Yaml yaml = Main.getPlayerYaml(player);
+						yaml.set("nick", yaml.getString("Playername"));
+						yaml.save();
 						player.setPlayerListName(player.getName());
 						player.setCustomName(player.getName());
 						player.setDisplayName(player.getName());

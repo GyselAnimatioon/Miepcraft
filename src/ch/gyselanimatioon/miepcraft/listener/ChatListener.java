@@ -24,24 +24,28 @@ public class ChatListener implements Listener {
 	public void onPlayerChat(PlayerChatEvent event) {
 
 		Yaml yaml = Main.getPlayerYaml(event.getPlayer());
-		if (!((String) yaml.get("nick")).toLowerCase().equalsIgnoreCase((String) yaml.getString("Playername"))) {
+
+		String nick = yaml.getString("nick").toLowerCase();
+		String name = yaml.getString("Playername").toLowerCase();
+		
+		if (!nick.equalsIgnoreCase(name)) {
 			event.setCancelled(true);
-			Bukkit.broadcastMessage("§8[§7Spieler§8] §7" + yaml.get("nick") + " §f" + event.getMessage());
+			Bukkit.broadcastMessage("§8[§7Spieler§8] §7" + nick + " §f" + event.getMessage());
 		}
 
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
 		List<String> list = Main.fileManager.read("log", "chatLog");
-		list.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
+		list.add("[" + format.format(now) + "] " + name + ": " + event.getMessage());
 		Main.fileManager.write("log", "chatLog", list);
 
 		List<String> list2 = Main.fileManager.read("log", "serverLog");
-		list2.add("[" + format.format(now) + "] " + event.getPlayer().getName() + ": " + event.getMessage());
+		list2.add("[" + format.format(now) + "] " + name + ": " + event.getMessage());
 		Main.fileManager.write("log", "serverLog", list2);
 
 		List<String> list3 = Main.fileManager.read(".", "miepcraftGame");
-		if (list3.get(0).length() > 3) {
+		if (list3.get(0).length() > 3) { // OutOfArray? " " zum miepcraftGame.txt hinzufügen
 			if (list3.get(0).equalsIgnoreCase("craft")) {
 				String miep = event.getMessage().toLowerCase();
 				if (miep.contains("craft")) {
