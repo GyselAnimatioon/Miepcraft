@@ -23,7 +23,8 @@ public class TracePlayers implements Listener {
 		if (xChange || yChange || zChange) {
 			Yaml yaml = Main.getPlayerYaml(e.getPlayer());
 			Yaml trace = Main.getPlayerTraceYaml(e.getPlayer());
-			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Welt", e.getPlayer().getWorld().toString());
+			
+			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Welt", e.getPlayer().getWorld().getName());
 			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".X", e.getPlayer().getLocation().getBlockX());
 			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Y", e.getPlayer().getLocation().getBlockY());
 			trace.add("Bewegung" + yaml.get("traveledBlocks") + ".Z", e.getPlayer().getLocation().getBlockZ());

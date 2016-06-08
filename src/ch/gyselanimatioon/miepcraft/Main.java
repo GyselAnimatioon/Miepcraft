@@ -19,6 +19,7 @@ import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Nick;
 import ch.gyselanimatioon.miepcraft.commands.Ping;
 import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
+import ch.gyselanimatioon.miepcraft.commands.ShowPlayerTrace;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
@@ -86,6 +87,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("checkmode").setExecutor(new CheckMode());
 		getCommand("nick").setExecutor(new Nick());
+		getCommand("showplayertrace").setExecutor(new ShowPlayerTrace());
 	}
 
 	private boolean setupEconomy() {
