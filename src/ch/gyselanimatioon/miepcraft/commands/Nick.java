@@ -51,7 +51,7 @@ public class Nick implements CommandExecutor {
 				player.sendMessage("§8[§eNick§8] §6Du hast keine Rechte auf diesen Befehl.");
 			}
 		} else {
-			Log.info("[CommandSpy.java] Not supportet.");
+			Log.info("[Nick.java] Not supportet.");
 		}
 		return true;
 	}
