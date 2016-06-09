@@ -41,6 +41,9 @@ public class CreatePlayerProfile implements Listener {
 		if(!yaml.contains("Spielzeit")) {
 			yaml.add("Spielzeit", 0);
 		}
+		if(!yaml.contains("BoughtFly")) {
+			yaml.add("BoughtFly", false);
+		}
 		yaml.save();
 
 	}

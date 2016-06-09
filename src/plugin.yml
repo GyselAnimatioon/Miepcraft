@@ -49,6 +49,9 @@ commands:
   showplayertrace:
     usage: /showplayertrace
     description: zeigt dein movement history an
+  gofly:
+    usage: /gofly
+    description: kaufe dir fuer 15k coins fly fuer 15 min
     
 permissions:
   miepcraft.commands.ticket.list:

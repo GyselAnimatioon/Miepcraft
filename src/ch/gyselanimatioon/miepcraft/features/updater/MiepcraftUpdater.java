@@ -25,6 +25,10 @@ public class MiepcraftUpdater {
 					yaml.set("Coins", Main.econ.getBalance(p.getName()));
 					yaml.set("Spielzeit", (int) (OnTimeAPI.getPlayerTimeData(p.getName(), data.TOTALPLAY) / 1000));
 					//TODO Claimblöcke
+
+					if(p.isFlying() && yaml.getBoolean("BoughtFly")) {
+						p.sendMessage("§8[§eFly§8] §6-100 Coins.");
+					}
 					yaml.save();
 				}
 			}

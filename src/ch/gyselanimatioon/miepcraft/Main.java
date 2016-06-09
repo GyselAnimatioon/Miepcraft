@@ -15,6 +15,7 @@ import ch.gyselanimatioon.miepcraft.commands.CommandSpy;
 import ch.gyselanimatioon.miepcraft.commands.EcoAll;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
+import ch.gyselanimatioon.miepcraft.commands.GoFly;
 import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ping;
 import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
@@ -22,6 +23,7 @@ import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
+import ch.gyselanimatioon.miepcraft.features.fly.MiepcraftFly;
 import ch.gyselanimatioon.miepcraft.features.scoreboard.MiepcraftScoreboard;
 import ch.gyselanimatioon.miepcraft.features.updater.MiepcraftUpdater;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
@@ -84,11 +86,13 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("commandspy").setExecutor(new CommandSpy());
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("checkmode").setExecutor(new CheckMode());
+		getCommand("gofly").setExecutor(new GoFly());
 		//getCommand("nick").setExecutor(new Nick());
 		//getCommand("showplayertrace").setExecutor(new ShowPlayerTrace());
 		
 		new MiepcraftScoreboard();
 		new MiepcraftUpdater();
+		new MiepcraftFly();
 
 		//Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftOntime(), this);
 	}
