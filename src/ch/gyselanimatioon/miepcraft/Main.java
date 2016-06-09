@@ -16,16 +16,14 @@ import ch.gyselanimatioon.miepcraft.commands.EcoAll;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.List;
-import ch.gyselanimatioon.miepcraft.commands.Nick;
 import ch.gyselanimatioon.miepcraft.commands.Ping;
 import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
-import ch.gyselanimatioon.miepcraft.commands.ShowPlayerTrace;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
 import ch.gyselanimatioon.miepcraft.features.MiepcraftPlayerdata;
-import ch.gyselanimatioon.miepcraft.features.TracePlayers;
+import ch.gyselanimatioon.miepcraft.features.scoreboard.MiepcraftScoreboard;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
@@ -71,7 +69,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new CreatePlayerProfile(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new TracePlayers(), this);
+		//Bukkit.getServer().getPluginManager().registerEvents(new TracePlayers(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
@@ -86,14 +84,18 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("commandspy").setExecutor(new CommandSpy());
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("checkmode").setExecutor(new CheckMode());
-		getCommand("nick").setExecutor(new Nick());
-		getCommand("showplayertrace").setExecutor(new ShowPlayerTrace());
+		//getCommand("nick").setExecutor(new Nick());
+		//getCommand("showplayertrace").setExecutor(new ShowPlayerTrace());
+		
+		new MiepcraftScoreboard();
+		//TODO MiepcraftMoney
 	}
 
 	private boolean setupEconomy() {
 		if (getServer().getPluginManager().getPlugin("Vault") == null) {
 			return false;
 		}
+
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if (rsp == null) {
 			return false;
