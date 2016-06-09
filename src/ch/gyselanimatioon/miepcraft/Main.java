@@ -22,7 +22,6 @@ import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
-import ch.gyselanimatioon.miepcraft.features.MiepcraftPlayerdata;
 import ch.gyselanimatioon.miepcraft.features.scoreboard.MiepcraftScoreboard;
 import ch.gyselanimatioon.miepcraft.features.updater.MiepcraftUpdater;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
@@ -68,7 +67,7 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), this);
 
-		Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
+		//Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new CreatePlayerProfile(), this);
 		//Bukkit.getServer().getPluginManager().registerEvents(new TracePlayers(), this);
 
@@ -90,7 +89,8 @@ public class Main extends JavaPlugin implements Listener {
 		
 		new MiepcraftScoreboard();
 		new MiepcraftUpdater();
-		//TODO MiepcraftMoney
+
+		//Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftOntime(), this);
 	}
 
 	private boolean setupEconomy() {
