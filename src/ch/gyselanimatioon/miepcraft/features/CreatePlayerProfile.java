@@ -16,7 +16,6 @@ public class CreatePlayerProfile implements Listener {
 	@EventHandler
 	public void PlayerQuitEvent(PlayerQuitEvent ev) {
 		Yaml yaml = Main.getPlayerYaml(ev.getPlayer());
-		yaml.add("Logged Out", (System.currentTimeMillis() / 1000));
 		yaml.save();
 	}
 
@@ -24,7 +23,6 @@ public class CreatePlayerProfile implements Listener {
 	public void PlayerJoinEvent(PlayerJoinEvent ev) {
 		Yaml yaml = Main.getPlayerYaml(ev.getPlayer());
 		yaml.add("Playername", ev.getPlayer().getName());
-		yaml.add("Logged In", (System.currentTimeMillis() / 1000));
 		if(!yaml.contains("CommandSpy Enabled")) {
 			yaml.add("CommandSpy Enabled", false);
 		}
@@ -39,6 +37,9 @@ public class CreatePlayerProfile implements Listener {
 		}
 		if(!yaml.contains("lastshowtrace")) {
 			yaml.add("lastshowtrace", 0);
+		}
+		if(!yaml.contains("Spielzeit")) {
+			yaml.add("Spielzeit", 0);
 		}
 		yaml.save();
 
