@@ -11,8 +11,6 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import com.gmail.nossr50.api.ExperienceAPI;
-
 import ch.gyselanimatioon.miepcraft.Main;
 import ch.gyselanimatioon.miepcraft.Yaml;
 
@@ -44,7 +42,6 @@ public class ScoreboardCreator {
 		playerScoreboards.put(pname, board);
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void update(Player p) {
 		Yaml yaml = Main.getPlayerYaml(p);
 		String pname = p.getName().toLowerCase();
@@ -52,8 +49,8 @@ public class ScoreboardCreator {
 		Score coin = coinscore.get(pname);
 		Score power = powerscore.get(pname);
 		
-		coin.setScore((int) Main.econ.getBalance(p.getName()));
-		power.setScore(ExperienceAPI.getPowerLevel(p));
+		coin.setScore(yaml.getInteger("Coins"));
+		power.setScore(yaml.getInteger("Powerlevel"));
 	}
 
 	public static void set(Player p) {

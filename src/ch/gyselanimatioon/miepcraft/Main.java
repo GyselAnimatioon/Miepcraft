@@ -24,6 +24,7 @@ import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
 import ch.gyselanimatioon.miepcraft.features.MiepcraftPlayerdata;
 import ch.gyselanimatioon.miepcraft.features.scoreboard.MiepcraftScoreboard;
+import ch.gyselanimatioon.miepcraft.features.updater.MiepcraftUpdater;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
@@ -88,6 +89,7 @@ public class Main extends JavaPlugin implements Listener {
 		//getCommand("showplayertrace").setExecutor(new ShowPlayerTrace());
 		
 		new MiepcraftScoreboard();
+		new MiepcraftUpdater();
 		//TODO MiepcraftMoney
 	}
 
