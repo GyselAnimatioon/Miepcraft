@@ -20,6 +20,8 @@ public class ScoreboardCreator {
 
 	public static HashMap<String, Score> coinscore = new HashMap<String, Score>();
 	public static HashMap<String, Score> powerscore = new HashMap<String, Score>();
+	public static HashMap<String, Score> ontimescore = new HashMap<String, Score>();
+	public static Score online;
 
 	@SuppressWarnings("deprecation")
 	public static void create(Player p, String BoardName, String BoardDisplayName) {
@@ -33,12 +35,17 @@ public class ScoreboardCreator {
 
 		Score coin = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Coins:"));
 		Score power = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Powerlevel:"));
+		Score ontime = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Spielzeit:"));
+		online = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Online:"));
 
 		coin.setScore(0);
 		power.setScore(0);
+		ontime.setScore(0);
+		online.setScore(0);
 		
 		coinscore.put(pname, coin);
 		powerscore.put(pname, power);
+		ontimescore.put(pname, ontime);
 		playerScoreboards.put(pname, board);
 	}
 
@@ -48,9 +55,12 @@ public class ScoreboardCreator {
 
 		Score coin = coinscore.get(pname);
 		Score power = powerscore.get(pname);
+		Score ontime = ontimescore.get(pname);
 		
 		coin.setScore(yaml.getInteger("Coins"));
 		power.setScore(yaml.getInteger("Powerlevel"));
+		ontime.setScore((int) (yaml.getInteger("Spielzeit") / 3600));
+		online.setScore(Bukkit.getOnlinePlayers().size());
 	}
 
 	public static void set(Player p) {
