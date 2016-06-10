@@ -8,7 +8,7 @@ import ch.gyselanimatioon.miepcraft.Yaml;
 
 public class MiepcraftFly {
 	public MiepcraftFly() {
-		// EVERY 0.1 SECONDS
+		// EVERY 1 SECONDS
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.plugin, new Runnable() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -17,12 +17,12 @@ public class MiepcraftFly {
 					Yaml yaml = Main.getPlayerYaml(p);
 					
 					if(p.isFlying() && yaml.getBoolean("BoughtFly")) {
-						Main.econ.withdrawPlayer(p.getName(), 2);
+						Main.econ.withdrawPlayer(p.getName(), 20);
 					}
 					
 					yaml.save();
 				}
 			}
-		}, 0L, 2L);
+		}, 0L, 20L);
 	}
 }

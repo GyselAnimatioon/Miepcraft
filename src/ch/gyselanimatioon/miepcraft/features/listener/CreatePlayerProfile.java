@@ -1,9 +1,8 @@
-package ch.gyselanimatioon.miepcraft.features;
+package ch.gyselanimatioon.miepcraft.features.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
 import ch.gyselanimatioon.miepcraft.Main;
 import ch.gyselanimatioon.miepcraft.Yaml;
@@ -11,12 +10,6 @@ import ch.gyselanimatioon.miepcraft.Yaml;
 public class CreatePlayerProfile implements Listener {
 
 	public CreatePlayerProfile() {
-	}
-
-	@EventHandler
-	public void PlayerQuitEvent(PlayerQuitEvent ev) {
-		Yaml yaml = Main.getPlayerYaml(ev.getPlayer());
-		yaml.save();
 	}
 
 	@EventHandler
@@ -45,6 +38,5 @@ public class CreatePlayerProfile implements Listener {
 			yaml.add("BoughtFly", false);
 		}
 		yaml.save();
-
 	}
 }

@@ -15,17 +15,15 @@ import ch.gyselanimatioon.miepcraft.commands.CommandSpy;
 import ch.gyselanimatioon.miepcraft.commands.EcoAll;
 import ch.gyselanimatioon.miepcraft.commands.Fixitem;
 import ch.gyselanimatioon.miepcraft.commands.Fixxp;
-import ch.gyselanimatioon.miepcraft.commands.GoFly;
 import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ping;
 import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
 import ch.gyselanimatioon.miepcraft.commands.Tp;
-import ch.gyselanimatioon.miepcraft.features.CreatePlayerProfile;
-import ch.gyselanimatioon.miepcraft.features.fly.MiepcraftFly;
+import ch.gyselanimatioon.miepcraft.features.listener.CreatePlayerProfile;
 import ch.gyselanimatioon.miepcraft.features.scoreboard.MiepcraftScoreboard;
-import ch.gyselanimatioon.miepcraft.features.updater.MiepcraftUpdater;
+import ch.gyselanimatioon.miepcraft.features.updater.Updater;
 import ch.gyselanimatioon.miepcraft.listener.ChatListener;
 import ch.gyselanimatioon.miepcraft.listener.CommandListener;
 import ch.gyselanimatioon.miepcraft.listener.DeathListener;
@@ -52,14 +50,13 @@ public class Main extends JavaPlugin implements Listener {
 		fileManager = new FileManager();
 		title = new Title();
 
-		fileManager.createFile("log","chatLog");
-		fileManager.createFile("log","commandLog");
-		fileManager.createFile("log","serverLog");
-		fileManager.createFile("log","teleportLog");
-		fileManager.createFile(".","tickets");
-		fileManager.createFile("inventorys","free");
-		fileManager.createFile(".","tutorialPos");
-		fileManager.createFile(".","miepcraftGame");
+		fileManager.createFile("log", "chatLog");
+		fileManager.createFile("log", "commandLog");
+		fileManager.createFile("log", "serverLog");
+		fileManager.createFile("log", "teleportLog");
+		fileManager.createFile(".", "tickets");
+		fileManager.createFile("inventorys", "free");
+		fileManager.createFile(".", "miepcraftGame");
 
 		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), this);
@@ -69,9 +66,7 @@ public class Main extends JavaPlugin implements Listener {
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), this);
 
-		//Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftPlayerdata(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new CreatePlayerProfile(), this);
-		//Bukkit.getServer().getPluginManager().registerEvents(new TracePlayers(), this);
 
 		getCommand("fixxp").setExecutor(new Fixxp());
 		getCommand("fixitem").setExecutor(new Fixitem());
@@ -86,15 +81,11 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("commandspy").setExecutor(new CommandSpy());
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("checkmode").setExecutor(new CheckMode());
-		getCommand("gofly").setExecutor(new GoFly());
-		//getCommand("nick").setExecutor(new Nick());
-		//getCommand("showplayertrace").setExecutor(new ShowPlayerTrace());
-		
-		new MiepcraftScoreboard();
-		new MiepcraftUpdater();
-		new MiepcraftFly();
+		// getCommand("gofly").setExecutor(new GoFly());
 
-		//Bukkit.getServer().getPluginManager().registerEvents(new MiepcraftOntime(), this);
+		new Updater();
+		new MiepcraftScoreboard();
+		// new MiepcraftFly();
 	}
 
 	private boolean setupEconomy() {
@@ -109,28 +100,16 @@ public class Main extends JavaPlugin implements Listener {
 		econ = rsp.getProvider();
 		return econ != null;
 	}
-	
-	public static Yaml getPlayerYaml(Player player) {	
-		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "players" + File.separator + player.getName() + ".yml");
+
+	public static Yaml getPlayerYaml(Player player) {
+		String path = plugin.getDataFolder().getAbsolutePath();
+		return new Yaml(path + File.separator + "players" + File.separator + player.getName() + ".yml");
 
 	}
 
 	public static Yaml getOfflinePlayerYaml(String string) {
-
-		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "players" + File.separator + string + ".yml");
-
-	}
-	
-	public static Yaml getPlayerTraceYaml(Player player) {	
-		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "trace" + File.separator + player.getName() + ".yml");
+		String path = plugin.getDataFolder().getAbsolutePath();
+		return new Yaml(path + File.separator + "players" + File.separator + string + ".yml");
 
 	}
-
-	public static Yaml getOfflinePlayerTraceYaml(String string) {
-
-		return new Yaml(plugin.getDataFolder().getAbsolutePath() + File.separator + "trace" + File.separator + string + ".yml");
-
-	}
-
 }
-

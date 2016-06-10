@@ -45,13 +45,13 @@ commands:
     description: check all modes von allen spielern
   nick:
     usage: /nick
-    description: gibt dir einen random nickname
+    description: gibt dir einen random nickname DEAKTIVIERT
   showplayertrace:
     usage: /showplayertrace
-    description: zeigt dein movement history an
+    description: zeigt dein movement history an DEAKTIVIERT
   gofly:
     usage: /gofly
-    description: kaufe dir fuer 15k coins fly fuer 15 min
+    description: kaufe dir fuer 15k coins fly fuer 15 min DEAKTIVIERT
     
 permissions:
   miepcraft.commands.ticket.list:
