@@ -40,9 +40,11 @@ public class List implements CommandExecutor {
 		    player.openInventory(inv);
 			
 		} else {
+			String list = "Online: " + Bukkit.getOnlinePlayers().size() + ". ";
 			for (Player players : Bukkit.getOnlinePlayers()) {
-				sender.sendMessage(players.getName());
+				list += players.getName() + ", ";
 			}
+			sender.sendMessage(list);
 		}
 		return true;
 	}

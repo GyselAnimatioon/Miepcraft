@@ -18,9 +18,10 @@ import ch.gyselanimatioon.miepcraft.commands.Fixxp;
 import ch.gyselanimatioon.miepcraft.commands.List;
 import ch.gyselanimatioon.miepcraft.commands.Ping;
 import ch.gyselanimatioon.miepcraft.commands.ReloadWarning;
+import ch.gyselanimatioon.miepcraft.commands.Savepack;
+import ch.gyselanimatioon.miepcraft.commands.Sup;
 import ch.gyselanimatioon.miepcraft.commands.Teamchat;
 import ch.gyselanimatioon.miepcraft.commands.Ticket;
-import ch.gyselanimatioon.miepcraft.commands.Tp;
 import ch.gyselanimatioon.miepcraft.features.listener.CreatePlayerProfile;
 import ch.gyselanimatioon.miepcraft.features.scoreboard.MiepcraftScoreboard;
 import ch.gyselanimatioon.miepcraft.features.updater.Updater;
@@ -53,7 +54,7 @@ public class Main extends JavaPlugin implements Listener {
 		fileManager.createFile("log", "chatLog");
 		fileManager.createFile("log", "commandLog");
 		fileManager.createFile("log", "serverLog");
-		fileManager.createFile("log", "teleportLog");
+		fileManager.createFile("log", "supporting");
 		fileManager.createFile(".", "tickets");
 		fileManager.createFile("inventorys", "free");
 		fileManager.createFile(".", "miepcraftGame");
@@ -72,8 +73,8 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("fixitem").setExecutor(new Fixitem());
 		getCommand("ticket").setExecutor(new Ticket());
 		getCommand("list").setExecutor(new List());
-		getCommand("tp").setExecutor(new Tp());
 		getCommand("backpack").setExecutor(new Backpack());
+		getCommand("savepack").setExecutor(new Savepack());
 		getCommand("ping").setExecutor(new Ping());
 		getCommand("teamchat").setExecutor(new Teamchat());
 		getCommand("ecoall").setExecutor(new EcoAll());
@@ -81,6 +82,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("commandspy").setExecutor(new CommandSpy());
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("checkmode").setExecutor(new CheckMode());
+		getCommand("sup").setExecutor(new Sup());
 		// getCommand("gofly").setExecutor(new GoFly());
 
 		new Updater();

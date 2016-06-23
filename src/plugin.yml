@@ -16,14 +16,11 @@ commands:
   list:
     usage:  /list
     description: Listet Online Spieler auf
-  tp:
-    usage:  /tp [User]
-    description: Teleportiert dich zu einem Spieler.
   backpack:
     usage: /backpack
     description: Lege hier Items ab die du im Backpack lagern willst
   ping:
-    usage: /ping <Player|all>
+    usage: /ping [<Player>|all]
     description: Schaue dir deinen Ping an
   teamchat:
     usage: /teamchat <Nachricht>
@@ -52,6 +49,12 @@ commands:
   gofly:
     usage: /gofly
     description: kaufe dir fuer 15k coins fly fuer 15 min DEAKTIVIERT
+  sup:
+    usage: /sup [<Grund>|end]
+    description: gehe in den support mode
+  savepack:
+    usage: /savepack
+    description: Lege hier deine Items ab welche du auf den neuen Server mitnehmen willst.
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -107,5 +110,11 @@ permissions:
     default: op
   miepcraft.commands.showplayertrace:
     description: permissions um dir die traces anzusehen
+    default: op
+  miepcraft.commands.sup:
+    description: permissions um in den supmode zu gehen
+    default: op
+  miepcraft.commands.sup.ignore:
+    description: permissions um personen im supmode zu sehen
     default: op
     

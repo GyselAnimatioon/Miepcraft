@@ -44,6 +44,32 @@ public class InventoryCloseListener implements Listener {
 			Main.fileManager.write("inventorys/user", e.getPlayer().getName().toLowerCase(), list);
 
 		}
+		if (e.getInventory().getTitle().contains("Beta Speicher")) {
+			List<String> list = new ArrayList<String>();
+			for (int slot = 0; slot < e.getInventory().getSize(); slot++) {
+				if (!(e.getInventory().getItem(slot) == null)) {
+					String material = e.getInventory().getItem(slot).getType().toString();
+					int amount = e.getInventory().getItem(slot).getAmount();
+					String entchantment = e.getInventory().getItem(slot).getEnchantments().toString();
+					short dur = e.getInventory().getItem(slot).getDurability();
+
+					Map<Enchantment, Integer> allEnchantments = e.getInventory().getItem(slot).getEnchantments();
+
+					if (entchantment.length() > 4) {
+						entchantment = "";
+						for (Map.Entry<Enchantment, Integer> oneEnchantment : allEnchantments.entrySet()) {
+							entchantment += oneEnchantment.getKey().getName() + "="
+									+ oneEnchantment.getValue().toString() + ",";
+						}
+						entchantment = entchantment.substring(0, entchantment.length() - 1);
+					}
+					String entry = material + " . " + amount + " . " + slot + " . " + dur + " . " + entchantment;
+					list.add(entry);
+				}
+			}
+			Main.fileManager.write("save/user", e.getPlayer().getName().toLowerCase(), list);
+
+		}
 
 	}
 }
