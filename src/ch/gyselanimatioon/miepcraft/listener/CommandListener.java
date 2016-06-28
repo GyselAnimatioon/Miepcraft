@@ -53,6 +53,53 @@ public class CommandListener implements Listener {
 			Bukkit.broadcastMessage("§8[§eMiep§8]");
 			Main.fileManager.write(".", "miepcraftGame", list4);
 		}
+		
+		if(!event.getPlayer().hasPermission("miepcraft.listener.command.bypass")) {
+			String message = event.getMessage().toLowerCase();
+			boolean permissions = true;
+			if(message.contains("bukkit")) {
+				permissions = false;
+			} else if(message.contains("mv")) {
+				permissions = false;
+			} else if(message.contains("multiverse")) {
+				permissions = false;
+			} else if(message.contains("core")) {
+				permissions = false;
+			} else if(message.contains("portal")) {
+				permissions = false;
+			} else if(message.contains("mv")) {
+				permissions = false;
+			} else if(message.contains("hd")) {
+				permissions = false;
+			} else if(message.contains("rg")) {
+				permissions = false;
+			} else if(message.contains("miepcraft")) {
+				permissions = false;
+			} else if(message.contains("minecraft")) {
+				permissions = false;
+			} else if(message.contains("holo")) {
+				permissions = false;
+			} else if(message.contains("ignore")) {
+				permissions = false;
+			} else if(message.contains("head")) {
+				permissions = false;
+			} else if(message.contains("tool")) {
+				permissions = false;
+			} else if(message.contains("toggle")) {
+				permissions = false;
+			} else if(message.contains("chest")) {
+				permissions = false;
+			} else if(message.contains("region")) {
+				permissions = false;
+			} else if(message.contains("inspect")) {
+				permissions = false;
+			}
+			
+			if(!permissions) {
+				event.setCancelled(true);
+				event.getPlayer().sendMessage("§8[§eNope§8]§6 Eines oder mehrere Wörter in deinem Command sind gesperrt.");
+			}
+		}
 
 	}
 }

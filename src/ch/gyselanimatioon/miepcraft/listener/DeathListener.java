@@ -20,14 +20,13 @@ public class DeathListener implements Listener {
 
 		Entity killer = e.getEntity().getKiller();
 		Entity opfer = e.getEntity();
-		String oMsg = "§8[§eTipp§8]§6 Deine Items können nur von dir aufgehoben werden.";
-
+		//String oMsg = "§8[§eTipp§8]§6 Deine Items können nur von dir aufgehoben werden.";
+		
 		Bukkit.getConsoleSender().sendMessage("§8[§eKill§8]§6 " + e.getDeathMessage());
 		
 		if (opfer instanceof Player && killer instanceof Player) {
-			opfer.sendMessage(oMsg);
+			//opfer.sendMessage(oMsg);
 			sendCoord(opfer);
-			killer.sendMessage("§8[§eKill§8]§6 Nur " + opfer.getName() + " kann seine Items aufheben.");
 			
 			// Kopf Drop Chance
 			double ran = Math.random() * 100;
@@ -48,7 +47,7 @@ public class DeathListener implements Listener {
 
 			
 		} else if (opfer instanceof Player) {
-			opfer.sendMessage(oMsg);
+			//opfer.sendMessage(oMsg);
 			sendCoord(opfer);
 		}
 		
