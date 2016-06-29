@@ -21,19 +21,6 @@ public class ChatListener implements Listener {
 
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event) {
-		String name = event.getPlayer().getName();
-
-		Date now = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-
-		List<String> list = Main.fileManager.read("log", "chatLog");
-		list.add("[" + format.format(now) + "] " + name + ": " + event.getMessage());
-		Main.fileManager.write("log", "chatLog", list);
-
-		List<String> list2 = Main.fileManager.read("log", "serverLog");
-		list2.add("[" + format.format(now) + "] " + name + ": " + event.getMessage());
-		Main.fileManager.write("log", "serverLog", list2);
-
 		List<String> list3 = Main.fileManager.read(".", "miepcraftGame");
 		if (list3.get(0).length() > 3) { // OutOfArray? " " zum miepcraftGame.txt hinzufügen
 			if (list3.get(0).equalsIgnoreCase("craft")) {
@@ -47,15 +34,5 @@ public class ChatListener implements Listener {
 				}
 			}
 		}
-
-		int rand = (int) (Math.random() * 100);
-		// Log.info(rand);
-		if (rand < 3) {
-			List<String> list4 = new ArrayList<>();
-			list4.add("craft");
-			Bukkit.broadcastMessage("§8[§eMiep§8]");
-			Main.fileManager.write(".", "miepcraftGame", list4);
-		}
-
 	}
 }

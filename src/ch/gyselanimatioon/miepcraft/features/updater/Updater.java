@@ -1,5 +1,8 @@
 package ch.gyselanimatioon.miepcraft.features.updater;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -42,6 +45,16 @@ public class Updater {
 					MiepcraftScoreboard.update(p);
 					MiepcraftScoreboard.set(p);
 					
+					/**
+					 * Random Miep
+					 */
+					int rand = (int) (Math.random() * 100);
+					if (rand < 2) {
+						List<String> list4 = new ArrayList<>();
+						list4.add("craft");
+						Bukkit.broadcastMessage("§8[§eMiep§8]");
+						Main.fileManager.write(".", "miepcraftGame", list4);
+					}
 					
 					/**
 					 * Fly Update
