@@ -13,6 +13,17 @@ public class JoinListener implements Listener {
 
 	@EventHandler
 	public void PlayerJoinEvent(PlayerJoinEvent ev) {
+		
+//		try {
+//			Statement statement = Main.connection.createStatement();
+//			ResultSet result = statement.executeQuery("SELECT * FROM miepcraft_newbies WHERE uuid = " + ev.getPlayer().getUniqueId() + ";");
+//			if(!result.next()) {
+//				statement.executeQuery("INSERT INTO miepcraft_newbies (uuid) VALUES ('" + ev.getPlayer().getUniqueId() + "');");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		if(ev.getPlayer().hasPermission("miepcraft.listener.join.silent")) {
 			for (Player players : Bukkit.getOnlinePlayers()) {
 				if (players.hasPermission("miepcraft.listener.join.spy")) {
