@@ -1,5 +1,8 @@
 package ch.gyselanimatioon.miepcraft.listener;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,20 +21,19 @@ public class CommandListener implements Listener {
 	@EventHandler
 	public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event) {
 
-//		try {
-//			Statement statement = Main.connection.createStatement();
-//			ResultSet result = statement.executeQuery("SELECT locked FROM miepcraft_newbies WHERE uuid = " + event.getPlayer().getUniqueId() + ";");
-//			while (result.next()) {
-//				boolean locked = result.getBoolean("locked");
-//				if(!locked) {
-//					Bukkit.broadcastMessage("unlocked");
-//				} else {
-//					Bukkit.broadcastMessage("locked");
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Statement statement = Main.connection.createStatement();
+			ResultSet result = statement.executeQuery("SELECT * FROM miepcraft_newbies WHERE uuid = '" + event.getPlayer().getUniqueId() + "';");
+			while (result.next()) {
+				boolean locked = result.getBoolean("locked");
+				if(locked) {
+					event.getPlayer().sendMessage("§r§7" + Main.config.getString("unlock_stages." + result.getString("unlock_stage")) + " [" + result.getString("unlock_stage") + "]");
+					event.setCancelled(true);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		for (Player players : Bukkit.getOnlinePlayers()) {
 			if (players.hasPermission("miepcraft.listener.command.spy")) {

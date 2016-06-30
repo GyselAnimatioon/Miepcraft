@@ -1,8 +1,12 @@
 package ch.gyselanimatioon.miepcraft;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -40,9 +44,10 @@ public class Main extends JavaPlugin implements Listener {
 	public static FileManager fileManager = null;
 	public static Main plugin = null;
 	public static Title title = null;
-//	public static Connection connection;
-//	private String host, database, username, password;
-//	private int port;
+	public static FileConfiguration config = null;
+	public static Connection connection;
+	private String host, database, username, password;
+	private int port;
 
 	@Override
 	public void onEnable() {
@@ -50,21 +55,22 @@ public class Main extends JavaPlugin implements Listener {
 			Bukkit.getConsoleSender().sendMessage("§8[§eMiepcraft§8] §6Economy deaktiviert.");
 		}
 		
-//		host = getConfig().getString("host");
-//		port = getConfig().getInt("port");
-//		database = getConfig().getString("database");
-//		username = getConfig().getString("username");
-//		password = getConfig().getString("password");
-//		
-//		try {
-//			openConnection();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-
 		plugin = this;
 		fileManager = new FileManager();
 		title = new Title();
+		config = getConfig();
+		
+		host = getConfig().getString("host");
+		port = getConfig().getInt("port");
+		database = getConfig().getString("database");
+		username = getConfig().getString("username");
+		password = getConfig().getString("password");
+		
+		try {
+			openConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		fileManager.createFile("log", "chatLog");
 		fileManager.createFile("log", "commandLog");
@@ -104,8 +110,8 @@ public class Main extends JavaPlugin implements Listener {
 		new MiepcraftScoreboard();
 		// new MiepcraftFly();
 		
-//		this.getConfig().options().copyDefaults(true);
-//		saveConfig();
+		this.getConfig().options().copyDefaults(true);
+		saveConfig();
 	}
 
 	private boolean setupEconomy() {
@@ -133,19 +139,19 @@ public class Main extends JavaPlugin implements Listener {
 
 	}
 	
-//	public void openConnection() throws SQLException, ClassNotFoundException {
-//		if (connection != null && !connection.isClosed()) {
-//			return;
-//		}
-//
-//		synchronized (this) {
-//			if (connection != null && !connection.isClosed()) {
-//				return;
-//			}
-//			Class.forName("com.mysql.jdbc.Driver");
-//			connection = DriverManager.getConnection(
-//					"jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database, this.username, this.password);
-//
-//		}
-//	}
+	public void openConnection() throws SQLException, ClassNotFoundException {
+		if (connection != null && !connection.isClosed()) {
+			return;
+		}
+
+		synchronized (this) {
+			if (connection != null && !connection.isClosed()) {
+				return;
+			}
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection(
+					"jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database, this.username, this.password);
+
+		}
+	}
 }
