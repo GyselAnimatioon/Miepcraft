@@ -57,9 +57,8 @@ public class Backpack implements CommandExecutor {
 				thisItem.setDurability(dur);
 				if (ench.length() > 5) {
 					for (String enchantment : enchantments) {
-						Log.info(enchantment);
 						String[] oneEnchantment = enchantment.split("=");
-						thisItem.addUnsafeEnchantment(Enchantment.getByName(oneEnchantment[0]), Integer.parseInt(oneEnchantment[1]));
+						thisItem.addEnchantment(Enchantment.getByName(oneEnchantment[0]), Integer.parseInt(oneEnchantment[1]));
 					}
 				}
 				
