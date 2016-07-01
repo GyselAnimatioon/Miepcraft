@@ -1,6 +1,7 @@
 package ch.gyselanimatioon.miepcraft.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,13 +39,8 @@ public class List implements CommandExecutor {
 				i++;
 			}
 		    player.openInventory(inv);
-			
 		} else {
-			String list = "Online: " + Bukkit.getOnlinePlayers().size() + ". ";
-			for (Player players : Bukkit.getOnlinePlayers()) {
-				list += players.getName() + ", ";
-			}
-			sender.sendMessage(list);
+			sender.sendMessage(ChatColor.GREEN + "" + Bukkit.getOnlinePlayers().size());
 		}
 		return true;
 	}

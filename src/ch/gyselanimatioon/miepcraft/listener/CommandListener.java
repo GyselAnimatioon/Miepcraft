@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +22,7 @@ public class CommandListener implements Listener {
 
 	@EventHandler
 	public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event) {
-
+		Log.info(ChatColor.AQUA + event.getPlayer().getName() + ": " + event.getMessage());
 		try {
 			Statement statement = Main.connection.createStatement();
 			ResultSet result = statement.executeQuery("SELECT * FROM miepcraft_newbies WHERE uuid = '" + event.getPlayer().getUniqueId() + "';");
