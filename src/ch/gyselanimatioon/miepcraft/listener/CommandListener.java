@@ -54,7 +54,7 @@ public class CommandListener implements Listener {
 			boolean permissions = true;
 			if (message.contains("bukkit")) {
 				permissions = false;
-			} else if (message.contains("mv")) {
+			} else if (message.startsWith("mv")) {
 				permissions = false;
 			} else if (message.contains("multiverse")) {
 				permissions = false;
@@ -64,9 +64,9 @@ public class CommandListener implements Listener {
 				permissions = false;
 			} else if (message.contains("mv")) {
 				permissions = false;
-			} else if (message.contains("hd")) {
+			} else if (message.startsWith("hd")) {
 				permissions = false;
-			} else if (message.contains("rg")) {
+			} else if (message.startsWith("rg")) {
 				permissions = false;
 			} else if (message.contains("miepcraft")) {
 				permissions = false;

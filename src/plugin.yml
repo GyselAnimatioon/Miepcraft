@@ -117,4 +117,6 @@ permissions:
   miepcraft.commands.sup.ignore:
     description: permissions um personen im supmode zu sehen
     default: op
-    
+  miepcraft.listener.command.bypass:
+    description: permissions um die gesperrten woerter in commands zu umgehen
+    default: op
