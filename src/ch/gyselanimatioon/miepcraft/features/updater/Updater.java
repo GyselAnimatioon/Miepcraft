@@ -48,8 +48,8 @@ public class Updater {
 					/**
 					 * Random Miep
 					 */
-					int rand = (int) (Math.random() * 100);
-					if (rand < 2) {
+					int rand = (int) (Math.random() * 1000);
+					if (rand < 1) {
 						List<String> list4 = new ArrayList<>();
 						list4.add("craft");
 						Bukkit.broadcastMessage("§8[§eMiep§8]");
