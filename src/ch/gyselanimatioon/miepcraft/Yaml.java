@@ -1,349 +1,354 @@
-package ch.gyselanimatioon.miepcraft;
+/*     */ package ch.gyselanimatioon.miepcraft;
+/*     */ 
+/*     */ import java.io.File;
+/*     */ import java.io.IOException;
+/*     */ import java.util.List;
+/*     */ import org.bukkit.configuration.file.YamlConfiguration;
+/*     */ import org.bukkit.configuration.file.YamlConfigurationOptions;
+/*     */ 
+/*     */ public class Yaml
+/*     */ {
+/*  11 */   private File file = null;
+/*  12 */   private YamlConfiguration yaml = new YamlConfiguration();
+/*     */   
+/*     */   public Yaml(File file) {
+/*  15 */     this.file = file;
+/*  16 */     if (!file.exists()) {
+/*     */       try {
+/*  18 */         file.createNewFile();
+/*     */       } catch (IOException e) {
+/*  20 */         e.printStackTrace();
+/*     */       }
+/*     */     }
+/*  23 */     load();
+/*     */   }
+/*     */   
+/*     */   public Yaml(String path) {
+/*  27 */     this.file = new File(path);
+/*  28 */     if (!this.file.exists()) {
+/*     */       try {
+/*  30 */         this.file.createNewFile();
+/*     */       } catch (IOException e) {
+/*  32 */         e.printStackTrace();
+/*     */       }
+/*     */     }
+/*  35 */     load();
+/*     */   }
+/*     */   
+/*     */   private void load() {
+/*     */     try {
+/*  40 */       this.yaml.load(this.file);
+/*     */     } catch (Exception e) {
+/*  42 */       e.printStackTrace();
+/*     */     }
+/*     */   }
+/*     */   
+/*     */ 
+/*     */   public void save()
+/*     */   {
+/*     */     try
+/*     */     {
+/*  51 */       this.yaml.save(this.file);
+/*     */     } catch (Exception e) {
+/*  53 */       e.printStackTrace();
+/*     */     }
+/*     */   }
+/*     */   
+/*     */   public void delete() {
+/*     */     try {
+/*  59 */       this.file.delete();
+/*     */     } catch (Exception e) {
+/*  61 */       e.printStackTrace();
+/*     */     }
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public int getInteger(String s)
+/*     */   {
+/*  73 */     return this.yaml.getInt(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */   public void reload()
+/*     */   {
+/*  80 */     save();
+/*  81 */     load();
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public String getString(String s)
+/*     */   {
+/*  92 */     return this.yaml.getString(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public Object get(String s)
+/*     */   {
+/* 103 */     return this.yaml.get(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public boolean getBoolean(String s)
+/*     */   {
+/* 114 */     return this.yaml.getBoolean(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void add(String s, Object o)
+/*     */   {
+/* 126 */     if (!contains(s)) {
+/* 127 */       set(s, o);
+/*     */     }
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void addToStringList(String s, String o)
+/*     */   {
+/* 140 */     this.yaml.getStringList(s).add(o);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void removeFromStringList(String s, String o)
+/*     */   {
+/* 153 */     this.yaml.getStringList(s).remove(o);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public List<String> getStringList(String s)
+/*     */   {
+/* 166 */     return this.yaml.getStringList(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void addToIntegerList(String s, int o)
+/*     */   {
+/* 180 */     this.yaml.getIntegerList(s).add(Integer.valueOf(o));
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void removeFromIntegerList(String s, int o)
+/*     */   {
+/* 194 */     this.yaml.getIntegerList(s).remove(o);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public List<Integer> getIntegerList(String s)
+/*     */   {
+/* 207 */     return this.yaml.getIntegerList(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void createNewStringList(String s, List<String> list)
+/*     */   {
+/* 221 */     this.yaml.set(s, list);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void createNewIntegerList(String s, List<Integer> list)
+/*     */   {
+/* 235 */     this.yaml.set(s, list);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void remove(String s)
+/*     */   {
+/* 247 */     set(s, null);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public boolean contains(String s)
+/*     */   {
+/* 260 */     return this.yaml.contains(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public double getDouble(String s)
+/*     */   {
+/* 273 */     return this.yaml.getDouble(s);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void set(String s, Object o)
+/*     */   {
+/* 287 */     this.yaml.set(s, o);
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void increment(String s)
+/*     */   {
+/* 299 */     this.yaml.set(s, Integer.valueOf(getInteger(s) + 1));
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void decrement(String s)
+/*     */   {
+/* 311 */     this.yaml.set(s, Integer.valueOf(getInteger(s) - 1));
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void increment(String s, int i)
+/*     */   {
+/* 323 */     this.yaml.set(s, Integer.valueOf(getInteger(s) + i));
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public void decrement(String s, int i)
+/*     */   {
+/* 335 */     this.yaml.set(s, Integer.valueOf(getInteger(s) - i));
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public YamlConfigurationOptions options()
+/*     */   {
+/* 346 */     return this.yaml.options();
+/*     */   }
+/*     */ }
 
-import java.io.File;
-import java.io.IOException;
 
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConfigurationOptions;
-
-public class Yaml {
-	
-	private File file = null;
-	private YamlConfiguration yaml = new YamlConfiguration();
-
-	public Yaml(File file) {
-		this.file = file;
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		this.load();
-	}
-
-	public Yaml(String path) {
-		this.file = new File(path);
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		this.load();
-	}
-
-	private void load() {
-		try {
-			this.yaml.load(this.file);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Save the Yaml's data to the file passed in the constructor.
-	 */
-	public void save() {
-		try {
-			this.yaml.save(this.file);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void delete() {
-		try {
-			this.file.delete();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Get an Integer from the given path.
-	 *
-	 * @param s
-	 *            Path to the Integer.
-	 * @return Integer at given path.
-	 */
-	public int getInteger(String s) {
-		return this.yaml.getInt(s);
-	}
-
-	/**
-	 * Save, then load the Yaml file. **Warning** Very Unstable.
-	 */
-	public void reload() {
-		this.save();
-		this.load();
-	}
-
-	/**
-	 * Get a String from the path defined.
-	 *
-	 * @param s
-	 *            Path to the String.
-	 * @return String at given path.
-	 */
-	public String getString(String s) {
-		return this.yaml.getString(s);
-	}
-
-	/**
-	 * Gets an Object at the given path.
-	 *
-	 * @param s
-	 *            Path to given Object.
-	 * @return An Object at the given Path.
-	 */
-	public Object get(String s) {
-		return this.yaml.get(s);
-	}
-
-	/**
-	 * Gets a boolean at the given path.
-	 *
-	 * @param s
-	 *            Path to the boolean.
-	 * @return Boolean at the given path.
-	 */
-	public boolean getBoolean(String s) {
-		return this.yaml.getBoolean(s);
-	}
-
-	/**
-	 * If the given path has no variable, it will be given a variable.
-	 *
-	 * @param s
-	 *            Path to look for.
-	 * @param o
-	 *            Variable to be assigned if not existing.
-	 */
-	public void add(String s, Object o) {
-		if (!this.contains(s)) {
-			this.set(s, o);
-		}
-	}
-
-	/**
-	 * Adds a String to a List of Strings.
-	 *
-	 * @param s
-	 *            Path to given String List.
-	 * @param o
-	 *            String to add to the String List.
-	 */
-	public void addToStringList(String s, String o) {
-		this.yaml.getStringList(s).add(o);
-	}
-
-	/**
-	 * Removes a String to a List of Strings.
-	 *
-	 * @param s
-	 *            Path to given String List.
-	 * @param o
-	 *            String to remove from the String List.
-	 */
-	public void removeFromStringList(String s, String o) {
-
-		this.yaml.getStringList(s).remove(o);
-
-	}
-
-	/**
-	 * Looks for a String List at given Path.
-	 *
-	 * @param s
-	 *            Path to String List.
-	 * @return String List at given Path.
-	 */
-	public java.util.List<String> getStringList(String s) {
-
-		return this.yaml.getStringList(s);
-
-	}
-
-	/**
-	 * Adds an Integer to a List of Integers.
-	 *
-	 * @param s
-	 *            Path to given Integer List.
-	 * @param o
-	 *            Integer to add to the Integer List.
-	 */
-	public void addToIntegerList(String s, int o) {
-
-		this.yaml.getIntegerList(s).add(o);
-
-	}
-
-	/**
-	 * Removes an Integer to a List of Integers.
-	 *
-	 * @param s
-	 *            Path to given Integer List.
-	 * @param o
-	 *            Integer to remove to the Integer List.
-	 */
-	public void removeFromIntegerList(String s, int o) {
-
-		this.yaml.getIntegerList(s).remove(o);
-
-	}
-
-	/**
-	 * Looks for a Integer List at given Path.
-	 *
-	 * @param s
-	 *            Path to Integer List.
-	 * @return Integer List at given Path.
-	 */
-	public java.util.List<Integer> getIntegerList(String s) {
-
-		return this.yaml.getIntegerList(s);
-
-	}
-
-	/**
-	 * Creates a new String List at given Path.
-	 *
-	 * @param s
-	 *            Path to create String List at.
-	 * @param list
-	 *            List to add.
-	 */
-	public void createNewStringList(String s, java.util.List<String> list) {
-
-		this.yaml.set(s, list);
-
-	}
-
-	/**
-	 * Creates a new Integer List at given Path.
-	 *
-	 * @param s
-	 *            Path to create Integer List at.
-	 * @param list
-	 *            List to add.
-	 */
-	public void createNewIntegerList(String s, java.util.List<Integer> list) {
-
-		this.yaml.set(s, list);
-
-	}
-
-	/**
-	 * **Untested/Unstable** Attempts to remove a variable at the given Path.
-	 *
-	 * @param s
-	 *            Path to given variable needing removal.
-	 */
-	public void remove(String s) {
-
-		this.set(s, null);
-
-	}
-
-	/**
-	 * Returns true if the given Path has a value.
-	 *
-	 * @param s
-	 *            Path to value.
-	 * @return True if the given Path has a value.
-	 */
-	public boolean contains(String s) {
-
-		return this.yaml.contains(s);
-
-	}
-
-	/**
-	 * Gets a double at the given Path.
-	 *
-	 * @param s
-	 *            Path to double.
-	 * @return Double at given Path.
-	 */
-	public double getDouble(String s) {
-
-		return this.yaml.getDouble(s);
-
-	}
-
-	/**
-	 * Sets a Object to the given Path.
-	 *
-	 * @param s
-	 *            Path to variable being assigned.
-	 * @param o
-	 *            Variable being assigned.
-	 */
-	public void set(String s, Object o) {
-
-		this.yaml.set(s, o);
-
-	}
-
-	/**
-	 * Increases an Integer by 1.
-	 *
-	 * @param s
-	 *            Path to Integer being incremented.
-	 */
-	public void increment(String s) {
-
-		this.yaml.set(s, this.getInteger(s) + 1);
-
-	}
-
-	/**
-	 * Decreases an Integer by 1.
-	 *
-	 * @param s
-	 *            Path to Integer being decremented.
-	 */
-	public void decrement(String s) {
-
-		this.yaml.set(s, this.getInteger(s) - 1);
-
-	}
-
-	/**
-	 * Increases an Integer by i.
-	 *
-	 * @param s
-	 *            Path to Integer being incremented.
-	 */
-	public void increment(String s, int i) {
-
-		this.yaml.set(s, this.getInteger(s) + i);
-
-	}
-
-	/**
-	 * Decreases an Integer by 1.
-	 *
-	 * @param s
-	 *            Path to Integer being decremented.
-	 */
-	public void decrement(String s, int i) {
-
-		this.yaml.set(s, this.getInteger(s) - i);
-
-	}
-
-	/**
-	 * Returns the YamlConfiguration's Options.
-	 *
-	 * @return YamlConfiguration's Options.
-	 */
-	public YamlConfigurationOptions options() {
-
-		return this.yaml.options();
-
-	}
-}
+/* Location:              C:\Users\phili\Desktop\Bungee\servers\lobby\Miepcraft.jar!\ch\gyselanimatioon\miepcraft\Yaml.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

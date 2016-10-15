@@ -1,9 +1,9 @@
 package ch.gyselanimatioon.miepcraft.commands;
+//BROKEN
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.regex.Pattern;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,32 +11,26 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Ping implements CommandExecutor {
-
-	public Ping() {
-
-	}
-
-	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = null;
-		if (sender instanceof Player) {
+		if ((sender instanceof Player)) {
 			player = (Player) sender;
 		}
 
 		if (player != null) {
-			if(args.length == 0) {
-			sender.sendMessage("§8[§ePing§8]§6 " + getPlayerPing(player));
-			} else if(args[0].equalsIgnoreCase("all")){
-				if(player.hasPermission("miepcraft.commands.ping.all")) {
-					for(Player onePlayer : Bukkit.getOnlinePlayers()) {
+			if (args.length == 0) {
+				sender.sendMessage("§8[§ePing§8]§6 " + getPlayerPing(player));
+			} else if (args[0].equalsIgnoreCase("all")) {
+				if (player.hasPermission("miepcraft.commands.ping.all")) {
+					for (Player onePlayer : Bukkit.getOnlinePlayers()) {
 						player.sendMessage("§8[§ePing§8]§6 " + onePlayer.getName() + ": " + getPlayerPing(onePlayer));
 					}
 				} else {
 					player.sendMessage("§8[§ePing§8]§6 Du hast keine Rechte auf diesen Befehl.");
 				}
 			} else if (Bukkit.getPlayer(args[0]).isOnline()) {
-				if(player.hasPermission("miepcraft.commands.ping.other")) {
-						player.sendMessage("§8[§ePing§8]§6 " + args[0] + ": " + getPlayerPing(Bukkit.getPlayer(args[0])));	
+				if (player.hasPermission("miepcraft.commands.ping.other")) {
+					player.sendMessage("§8[§ePing§8]§6 " + args[0] + ": " + getPlayerPing(Bukkit.getPlayer(args[0])));
 				}
 			} else {
 				player.sendMessage("§8[§ePing§8]§6 Du hast keine Rechte auf diesen Befehl.");
@@ -71,5 +65,4 @@ public class Ping implements CommandExecutor {
 		}
 		return version;
 	}
-
 }

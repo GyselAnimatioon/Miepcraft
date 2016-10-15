@@ -1,48 +1,21 @@
 package ch.gyselanimatioon.miepcraft.listener;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-
+import ch.gyselanimatioon.miepcraft.PluginMain;
+import ch.gyselanimatioon.miepcraft.Yaml;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import ch.gyselanimatioon.miepcraft.Main;
-import ch.gyselanimatioon.miepcraft.Yaml;
-
 public class CommandListener implements Listener {
-
-	public CommandListener() {
-
-	}
-
 	@EventHandler
 	public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event) {
-		Log.info(ChatColor.AQUA + event.getPlayer().getName() + ": " + event.getMessage());
-		try {
-			Statement statement = Main.connection.createStatement();
-			ResultSet result = statement.executeQuery("SELECT * FROM miepcraft_newbies WHERE uuid = '" + event.getPlayer().getUniqueId() + "';");
-			while (result.next()) {
-				boolean locked = result.getBoolean("locked");
-				if(locked) {
-					event.getPlayer().sendMessage("§r§7" + Main.config.getString("unlock_stages." + result.getString("unlock_stage")) + " [" + result.getString("unlock_stage") + "]");
-					event.setCancelled(true);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		for (Player players : Bukkit.getOnlinePlayers()) {
+		for (Player players : Bukkit.getServer().getOnlinePlayers()) {
 			if (players.hasPermission("miepcraft.listener.command.spy")) {
-				// CommandSpy wird nich der Person angezeigt die den Command
-				// benutzt hat.
+
 				if (!players.getName().toLowerCase().equalsIgnoreCase(event.getPlayer().getName().toLowerCase())) {
-					Yaml yaml = Main.getPlayerYaml(players);
+					Yaml yaml = PluginMain.getPlayerYaml(players);
 					if (yaml.getBoolean("CommandSpy Enabled")) {
 						players.sendMessage(
 								"§8[§eCommandSpy§8] §7" + event.getPlayer().getName() + " §f" + event.getMessage());
@@ -98,6 +71,5 @@ public class CommandListener implements Listener {
 						.sendMessage("§8[§eNope§8]§6 Eines oder mehrere Wörter in deinem Command sind gesperrt.");
 			}
 		}
-
 	}
 }

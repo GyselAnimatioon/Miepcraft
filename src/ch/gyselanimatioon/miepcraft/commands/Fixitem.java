@@ -1,30 +1,24 @@
 package ch.gyselanimatioon.miepcraft.commands;
+//DONE some deprecation fixes;
 
+import ch.gyselanimatioon.miepcraft.PluginMain;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import ch.gyselanimatioon.miepcraft.Main;
-
 public class Fixitem implements CommandExecutor {
-
-	public Fixitem() {
-
-	}
-
-	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player player = null;
-		if (sender instanceof Player) {
+		if ((sender instanceof Player)) {
 			player = (Player) sender;
 		}
 
 		if (player != null) {
-			if (Main.econ.getBalance(player) > 250) {
-				player.getItemInHand().setDurability((short) 0);
-				Main.econ.withdrawPlayer(player, 250);
+			if (PluginMain.econ.getBalance(player) > 250.0D) {
+				player.getInventory().getItemInMainHand().setDurability((short) 0);
+				PluginMain.econ.withdrawPlayer(player, 250.0D);
 
 				sender.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "Item" + ChatColor.DARK_GRAY + "] "
 						+ ChatColor.GOLD + "Item repariert.");
@@ -37,9 +31,8 @@ public class Fixitem implements CommandExecutor {
 		} else {
 			sender.sendMessage(
 					ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "Miepcraft Fixitem Command" + ChatColor.DARK_GRAY
-							+ "] " + ChatColor.GOLD + "Dieser Befehl kann nur als Spieler ausgeführt werden.");
+							+ "] " + ChatColor.GOLD + "Dieser Befehl kann nur als Spieler ausgefÃ¼hrt werden.");
 		}
 		return true;
 	}
-
 }
