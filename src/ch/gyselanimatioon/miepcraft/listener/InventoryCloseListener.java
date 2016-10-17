@@ -25,7 +25,7 @@ import static ch.gyselanimatioon.miepcraft.PluginMain.*;
 
 public class InventoryCloseListener implements org.bukkit.event.Listener {
 	public Inventory inv2;
-	//TODO Shields/Banners, put backpack size in header, (Upcoming 1.11, Shulkerboxes)
+	//TODO Shields/Banners, backpack size in header, (Upcoming 1.11, Shulkerboxes)
 
 	private static final short VERSION = 0x0202;
 
@@ -71,7 +71,7 @@ public class InventoryCloseListener implements org.bukkit.event.Listener {
 					
 					String norm = "{" + id + US + count + US + damage + US + slot + US + name + "}";
 					
-					/**
+					/*
 					 *  potion = Vanilla potion;
 					 *  potFX = Custom potions;
 					 *  ench = enchanted Weapons/Armor/Tools (/!\ Only for enchantments that are possible in Survival-Vanilla Minecraft /!\);
@@ -81,10 +81,7 @@ public class InventoryCloseListener implements org.bukkit.event.Listener {
 					 */
 					String potion = "{}";
 					String potFX = "{}";
-					
-					//TODO fix for 1.10
-					String ench = "{}";
-										
+					String ench = "{}";									
 					String bookEnch = "{}";
 					String bookWrite = "{}";
 					String skullOwner = Character.toString(NUL);

@@ -102,11 +102,11 @@ public class PluginMain extends JavaPlugin implements Listener {
 	}
 
 	public static boolean isOnline(String username) {
-		List<String> p$ = new ArrayList<String>();
-		for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-			p$.add(p.getName());
+		List<String> players = new ArrayList<String>();
+		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+			players.add(player.getName());
 		}
-		if (p$.contains(username)) {
+		if (players.contains(username)) {
 			return true;
 		} else {
 			return false;

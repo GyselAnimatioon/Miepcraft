@@ -29,12 +29,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
-
-
 public class Backpack implements CommandExecutor {
 	private static short version = 0x0000;
-	/* private static String uuid$ = "";
-	 * TODO auto-update on name-change;
+	/*
+	 * private static String uuid$ = ""; TODO auto-update on name-change;
 	 */
 
 	@Override
@@ -73,8 +71,10 @@ public class Backpack implements CommandExecutor {
 
 			List<String> lines = new ArrayList<String>();
 			if (playerYaml.getBoolean("isInspecting")) {
-				PluginMain.fileManager.createFile("inventorys/user", playerYaml.getString("inspectedUser").toLowerCase());
-				lines = PluginMain.fileManager.read("inventorys/user", playerYaml.getString("inspectedUser").toLowerCase());
+				PluginMain.fileManager.createFile("inventorys/user",
+						playerYaml.getString("inspectedUser").toLowerCase());
+				lines = PluginMain.fileManager.read("inventorys/user",
+						playerYaml.getString("inspectedUser").toLowerCase());
 			} else {
 				PluginMain.fileManager.createFile("inventorys/user", player.getName().toLowerCase());
 				lines = PluginMain.fileManager.read("inventorys/user", player.getName().toLowerCase());
@@ -98,7 +98,6 @@ public class Backpack implements CommandExecutor {
 					// TODO Banners/Shields
 				} else if (version == 0x0202) {
 					for (String item : items) {
-						Bukkit.getLogger().info("TEST");
 						String[] itemDataArray = item.split(Character.toString(RS));
 
 						String id = new String();
@@ -117,8 +116,6 @@ public class Backpack implements CommandExecutor {
 							name = normEntrys[4];
 						}
 
-						Bukkit.getLogger().info(id);
-
 						ItemStack itemStack = new ItemStack(Material.valueOf(id));
 						itemStack.setDurability(Short.parseShort(damage));
 						itemStack.setAmount(Integer.parseInt(count));
@@ -136,12 +133,12 @@ public class Backpack implements CommandExecutor {
 							for (String enchEntry : enchEntrys) {
 								String[] oneEnch = enchEntry.split(Character.toString(US));
 								itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-										false);
+										true);
 							}
 							itemStack.setItemMeta(itemMeta);
 						} else if (ench.contains(Character.toString(US))) {
 							String[] oneEnch = ench.split(Character.toString(US));
-							itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]), false);
+							itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]), true);
 							itemStack.setItemMeta(itemMeta);
 						}
 
@@ -153,13 +150,13 @@ public class Backpack implements CommandExecutor {
 								for (String bookEnchEntry : bookEnchEntrys) {
 									String[] oneBookEnch = bookEnchEntry.split(Character.toString(US));
 									bookMeta.addStoredEnchant(Enchantment.getByName(oneBookEnch[0]),
-											Integer.parseInt(oneBookEnch[1]), false);
+											Integer.parseInt(oneBookEnch[1]), true);
 								}
 								itemStack.setItemMeta(bookMeta);
 							} else if (bookEnch.contains(Character.toString(US))) {
 								String[] oneBookEnch = bookEnch.split(Character.toString(US));
 								bookMeta.addStoredEnchant(Enchantment.getByName(oneBookEnch[0]),
-										Integer.parseInt(oneBookEnch[1]), false);
+										Integer.parseInt(oneBookEnch[1]), true);
 								itemStack.setItemMeta(bookMeta);
 							}
 						}
@@ -378,12 +375,12 @@ public class Backpack implements CommandExecutor {
 							for (String enchEntry : enchEntrys) {
 								String[] oneEnch = enchEntry.split(Character.toString(US));
 								itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-										false);
+										true);
 							}
 							itemStack.setItemMeta(itemMeta);
 						} else if (ench.contains(Character.toString(US))) {
 							String[] oneEnch = ench.split(Character.toString(US));
-							itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]), false);
+							itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]), true);
 							itemStack.setItemMeta(itemMeta);
 						}
 
@@ -395,13 +392,13 @@ public class Backpack implements CommandExecutor {
 								for (String bookEnchEntry : bookEnchEntrys) {
 									String[] oneBookEnch = bookEnchEntry.split(Character.toString(US));
 									bookMeta.addStoredEnchant(Enchantment.getByName(oneBookEnch[0]),
-											Integer.parseInt(oneBookEnch[1]), false);
+											Integer.parseInt(oneBookEnch[1]), true);
 								}
 								itemStack.setItemMeta(bookMeta);
 							} else if (bookEnch.contains(Character.toString(US))) {
 								String[] oneBookEnch = bookEnch.split(Character.toString(US));
 								bookMeta.addStoredEnchant(Enchantment.getByName(oneBookEnch[0]),
-										Integer.parseInt(oneBookEnch[1]), false);
+										Integer.parseInt(oneBookEnch[1]), true);
 								itemStack.setItemMeta(bookMeta);
 							}
 						}
@@ -491,12 +488,12 @@ public class Backpack implements CommandExecutor {
 							for (String enchEntry : enchEntrys) {
 								String[] oneEnch = enchEntry.split(Character.toString(US));
 								itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-										false);
+										true);
 							}
 							itemStack.setItemMeta(itemMeta);
 						} else if (ench.contains(Character.toString(US))) {
 							String[] oneEnch = ench.split(Character.toString(US));
-							itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]), false);
+							itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]), true);
 							itemStack.setItemMeta(itemMeta);
 						}
 
@@ -571,13 +568,13 @@ public class Backpack implements CommandExecutor {
 								for (String enchEntry : enchEntrys) {
 									String[] oneEnch = enchEntry.split("=");
 									itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-											false);
+											true);
 									itemStack.setItemMeta(itemMeta);
 								}
 							} else if (ench.contains("=")) {
 								String[] oneEnch = ench.split("=");
 								itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-										false);
+										true);
 								itemStack.setItemMeta(itemMeta);
 							}
 
@@ -607,13 +604,13 @@ public class Backpack implements CommandExecutor {
 								for (String enchEntry : enchEntrys) {
 									String[] oneEnch = enchEntry.split("=");
 									itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-											false);
+											true);
 									itemStack.setItemMeta(itemMeta);
 								}
 							} else if (ench.contains("=")) {
 								String[] oneEnch = ench.split("=");
 								itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-										false);
+										true);
 								itemStack.setItemMeta(itemMeta);
 							}
 
@@ -661,7 +658,7 @@ public class Backpack implements CommandExecutor {
 								for (String enchEntry : enchEntrys) {
 									String[] oneEnch = enchEntry.split("=");
 									itemMeta.addEnchant(Enchantment.getByName(oneEnch[0]), Integer.parseInt(oneEnch[1]),
-											false);
+											true);
 									itemStack.setItemMeta(itemMeta);
 								}
 							} else if (ench.contains("=")) {

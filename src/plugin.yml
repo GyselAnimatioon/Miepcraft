@@ -25,36 +25,12 @@ commands:
   teamchat:
     usage: /teamchat <Nachricht>
     description: Schreibe eine Nachricht an alle Teammitglieder
-  ecoall:
-    usage: /ecoall <Anzahl>
-    description: Gebe allen Spielern geld.
-  reloadwarning:
-    usage: /reloadwarning
-    description: Warne alle Spieler auf einen Reload vor.
   commandspy:
     usage: /commandspy
     description: Schlatet CommandSpy ein oder aus.
   clearchat:
     usage: /clearchat
     description: Sende 200 Leere Zeilen in den Chat um den Chat zu loeschen.
-  checkmode:
-    usage: /checkmode
-    description: check all modes von allen spielern
-  nick:
-    usage: /nick
-    description: gibt dir einen random nickname DEAKTIVIERT
-  showplayertrace:
-    usage: /showplayertrace
-    description: zeigt dein movement history an DEAKTIVIERT
-  gofly:
-    usage: /gofly
-    description: kaufe dir fuer 15k coins fly fuer 15 min DEAKTIVIERT
-  sup:
-    usage: /sup [<Grund>|end]
-    description: gehe in den support mode
-  savepack:
-    usage: /savepack
-    description: Lege hier deine Items ab welche du auf den neuen Server mitnehmen willst.
     
 permissions:
   miepcraft.commands.ticket.list:
@@ -65,9 +41,6 @@ permissions:
     default: op
   miepcraft.listener.quit.spy:
     description: quit spy permissions
-    default: op
-  miepcraft.commands.tp:
-    description: tp permissions
     default: op
   miepcraft.commands.ping.all:
     description: all ping permissions
@@ -87,35 +60,17 @@ permissions:
   miepcraft.commands.backpack.middle:
     description: permission auf ein 4 mal 9 backpack
     default: op
+  miepcraft.commands.backpack.others:
+    description: other backpack permissions
+    default: op
   miepcraft.commands.teamchat:
     description: permission auf ein 4 mal 9 backpack
-    default: op
-  miepcraft.commands.ecoall:
-    description: permission um allen geld zu geben.
     default: op
   miepcraft.commands.ticket.notify:
     description: permission um benachricht zu werden wenn jemand ein ticket erstellt
     default: op
-  miepcraft.commands.reloadwarning:
-    description: permission um alle auf einen reload zu warnen.
-    default: op
   miepcraft.commands.clearchat:
     description: permission um den chat zu clearen.
-    default: op
-  miepcraft.commands.checkmode:
-    description: permissions um die modis von allen spielern anzusehen
-    default: op
-  miepcraft.commands.nick:
-    description: permissions um dir einen random nicknamen zu geben
-    default: op
-  miepcraft.commands.showplayertrace:
-    description: permissions um dir die traces anzusehen
-    default: op
-  miepcraft.commands.sup:
-    description: permissions um in den supmode zu gehen
-    default: op
-  miepcraft.commands.sup.ignore:
-    description: permissions um personen im supmode zu sehen
     default: op
   miepcraft.listener.command.bypass:
     description: permissions um die gesperrten woerter in commands zu umgehen
