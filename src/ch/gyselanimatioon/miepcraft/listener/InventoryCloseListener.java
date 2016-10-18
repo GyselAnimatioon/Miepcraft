@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.bukkit.Material;
+import org.bukkit.block.banner.Pattern;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -25,9 +27,10 @@ import static ch.gyselanimatioon.miepcraft.PluginMain.*;
 
 public class InventoryCloseListener implements org.bukkit.event.Listener {
 	public Inventory inv2;
-	//TODO Shields/Banners, backpack size in header, (Upcoming 1.11, Shulkerboxes)
+	// TODO Shields/Banners, backpack size in header, (Upcoming 1.11,
+	// Shulkerboxes)
 
-	private static final short VERSION = 0x0202;
+	private static final short VERSION = 0x0203;
 
 	@org.bukkit.event.EventHandler
 	public void InventoryClose(InventoryCloseEvent e) {
@@ -52,39 +55,37 @@ public class InventoryCloseListener implements org.bukkit.event.Listener {
 					ItemMeta itemMeta = item.getItemMeta();
 
 					/**
-					 * count = item count;
-					 * damage = metadata of item;
-					 * id = itemID
-					 * name = Custom Item-name (No character restrictions);
+					 * count = item count; damage = metadata of item; id =
+					 * itemID name = Custom Item-name (No character
+					 * restrictions);
 					 */
 					int count = item.getAmount();
 					short damage = item.getDurability();
 					String id = item.getType().toString();
 					String name = Character.toString(NUL);
-					
+
 					if (itemMeta.hasDisplayName()) {
 						name = itemMeta.getDisplayName();
 						if (name.contains("§")) {
 							name = name.substring(2, name.length());
 						}
 					}
-					
+
 					String norm = "{" + id + US + count + US + damage + US + slot + US + name + "}";
-					
+
 					/*
-					 *  potion = Vanilla potion;
-					 *  potFX = Custom potions;
-					 *  ench = enchanted Weapons/Armor/Tools (/!\ Only for enchantments that are possible in Survival-Vanilla Minecraft /!\);
-					 *  bookEnch = enchanted Books
-					 *  bookWrite = written Books (Signed and Unsigned)
-					 *  skullOwner = Custom playerhead;
+					 * potion = Vanilla potion potFX = Custom potions ench =
+					 * enchanted Weapons/Armor/Tools bookEnch = enchanted Books
+					 * bookWrite = written Books (Signed and Unsigned)
+					 * skullOwner = Custom playerhead banner = Banners/Shields
 					 */
 					String potion = "{}";
 					String potFX = "{}";
-					String ench = "{}";									
+					String ench = "{}";
 					String bookEnch = "{}";
 					String bookWrite = "{}";
 					String skullOwner = Character.toString(NUL);
+					String banner = "{}";
 
 					if (itemMeta.hasEnchants()) {
 						ench = "";
@@ -141,7 +142,7 @@ public class InventoryCloseListener implements org.bukkit.event.Listener {
 						String title = Character.toString(NUL);
 						String generation = Character.toString(NUL);
 						String author = Character.toString(NUL);
-						String pages$ = "";
+						String pages$ = Character.toString(NUL);
 
 						BookMeta bookMeta = (BookMeta) itemMeta;
 
@@ -158,15 +159,39 @@ public class InventoryCloseListener implements org.bukkit.event.Listener {
 						}
 
 						List<String> pages = bookMeta.getPages();
-						for (String page : pages) {
-							pages$ += page + US;
+						if (pages.size() != 0) {
+							pages$ = "";
+							for (String page : pages) {
+								pages$ += page + US;
+							}
+							pages$ = pages$.substring(0, pages$.length() - 1);
+
 						}
-						pages$ = pages$.substring(0, pages$.length() - 1);
 
 						bookWrite = "{" + author + GS + title + GS + generation + GS + pages$ + "}";
 					}
+
+					if (id == Material.BANNER.toString() || id == Material.SHIELD.toString()) {
+						banner = "";
+
+						BannerMeta bannerMeta = (BannerMeta) itemMeta;
+
+						String base = bannerMeta.getBaseColor().name();
+						String patterns$ = Character.toString(NUL);
+
+						List<Pattern> patterns = bannerMeta.getPatterns();
+						if (patterns.size() != 0) {
+							patterns$ = "";
+							for (Pattern pattern : patterns) {
+								patterns$ += pattern.getColor().name() + SUB + pattern.getPattern().name() + US;
+							}
+							patterns$ = patterns$.substring(0, patterns$.length() - 1);
+						}
+
+						banner = "{" + base + GS + patterns$ + "}";
+					}
 					String entry = norm + RS + ench + RS + bookEnch + RS + potion + RS + potFX + RS + bookWrite + RS
-							+ skullOwner;
+							+ banner + RS + skullOwner;
 					list.add(entry);
 				}
 			}

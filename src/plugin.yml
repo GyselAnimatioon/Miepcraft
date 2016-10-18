@@ -1,4 +1,4 @@
-main: ch.gyselanimatioon.miepcraft.Main
+main: ch.gyselanimatioon.miepcraft.PluginMain
 name: Miepcraft
 author: GyselAnimatioon
 version: 1.0

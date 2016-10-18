@@ -32,7 +32,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 	public static final Server SERVER = Bukkit.getServer();
 	public static final Logger LOGGER = SERVER.getLogger();
 
-	public static final char NUL = 0, SOH = 1, STX = 2, GS = 29, RS = 30, US = 31;
+	public static final char NUL = 0, SOH = 1, STX = 2, GS = 29, RS = 30, US = 31, SUB = 26;
 
 	public static Economy econ = null;
 	public static FileManager fileManager = null;
